@@ -6,6 +6,7 @@ namespace LiveDemo
 {
     public static class Config
     {
-        public static string ConnectionString = @"server=DESKTOP-EH9QDAI;Database=Softuni;Integrated Security=True";
+        public static string ConnectionString 
+            = @"server=DESKTOP-EH9QDAI;Database=Softuni;Integrated Security=True";
     }
 }
