@@ -13,10 +13,15 @@ namespace LiveDemo
             //Open connection
             sqlConnection.Open();
             //Connected
-            string query = "SELECT COUNT(*) FROM [Employees]";
+
 
             //Then we create a query
+            string query = "SELECT COUNT(*) AS [EmployeeCount] FROM [Employees]";
             SqlCommand command = new SqlCommand(query, sqlConnection);
+            //Execute command
+            int employeeCount = (int)command.ExecuteScalar();
+            Console.WriteLine(employeeCount);
+            Console.WriteLine("----------------------------------------");
 
 
             //Just for debugging
