@@ -12,11 +12,13 @@ namespace Villain_Names
 
             sqlConnection.Open();
 
-            
+            string result = GetVillainsNamesWithMinionsCount(sqlConnection);
+            Console.WriteLine(result);
 
             sqlConnection.Close();
         }
 
+        
         private static string GetVillainsNamesWithMinionsCount(SqlConnection sqlConnection)
         {
             StringBuilder output = new StringBuilder();
@@ -34,6 +36,12 @@ namespace Villain_Names
             SqlCommand command = new SqlCommand(query,sqlConnection);
             using SqlDataReader reader = command.ExecuteReader();
 
+            while (reader.Read())
+            {
+                output.AppendLine($"{reader["Name"]} - {reader["MinionsCount"]}");
+            }
+
+            return output.ToString().TrimEnd();
         }
     }
 }
