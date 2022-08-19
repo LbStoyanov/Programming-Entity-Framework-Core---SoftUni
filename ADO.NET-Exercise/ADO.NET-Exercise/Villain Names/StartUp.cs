@@ -8,11 +8,13 @@ namespace Villain_Names
     {
         static void Main()
         {
+            int villainId = int.Parse(Console.ReadLine());
+
             using SqlConnection sqlConnection = new SqlConnection(Config.ConnectionString);
 
             sqlConnection.Open();
 
-            string result = GetVillainsNamesWithMinionsCount(sqlConnection);
+            string result = GetVillainsWithMinions(sqlConnection,villainId);
             Console.WriteLine(result);
 
             sqlConnection.Close();
@@ -46,6 +48,8 @@ namespace Villain_Names
 
         private static string GetVillainsWithMinions(SqlConnection sqlConnection,int villainId)
         {
+            StringBuilder output = new StringBuilder();
+
             string villainNameQuery = @"SELECT [Name]
                                           FROM [Villains]
                                          WHERE [Id] = @VillainId";
@@ -60,6 +64,8 @@ namespace Villain_Names
                 return $"No villain with ID {villainId} exists in the database.";
             }
 
+            output.AppendLine($"Villain: {villainName}");
+
             string minionsQuery = @"SELECT [m].[Name],
                                            [m].[Age]
                                       FROM [MinionsVillains]
@@ -71,6 +77,24 @@ namespace Villain_Names
             SqlCommand getMinionsCommand = new SqlCommand(minionsQuery, sqlConnection);
             getMinionsCommand.Parameters.AddWithValue("@VillainId", villainId);
 
+            using SqlDataReader minionsReader = getMinionsCommand.ExecuteReader();
+
+            if (!minionsReader.HasRows)
+            {
+                output.AppendLine($"(no minions)");
+            }
+            else
+            {
+                int rowNum = 1;
+
+                while (minionsReader.Read())
+                {
+                    output.AppendLine($"{rowNum}. {minionsReader["Name"]} {minionsReader["Age"]}");
+                    rowNum++;
+                }
+            }
+
+            return output.ToString().Trim();
 
         }
     }
