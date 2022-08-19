@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace Villain_Names
 {
@@ -11,9 +12,28 @@ namespace Villain_Names
 
             sqlConnection.Open();
 
-            Console.WriteLine("Connected successfully");
+            
 
             sqlConnection.Close();
+        }
+
+        private static string GetVillainsNamesWithMinionsCount(SqlConnection sqlConnection)
+        {
+            StringBuilder output = new StringBuilder();
+            string query = @"SELECT 
+	                            [v].[Name],
+	                            COUNT([mv].[MinionId])
+	                            AS [MinionsCount]
+                                FROM [Villains]
+                                  AS [v]
+                                LEFT JOIN[MinionsVillains] AS[mv] ON v.[Id] = mv.[VillainId]
+                                GROUP BY [v].Name
+                                HAVING COUNT([mv].[MinionId]) > 3
+                                ORDER BY [MinionsCount]";
+
+            SqlCommand command = new SqlCommand(query,sqlConnection);
+            using SqlDataReader reader = command.ExecuteReader();
+
         }
     }
 }
