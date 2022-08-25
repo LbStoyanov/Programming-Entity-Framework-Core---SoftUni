@@ -8,7 +8,15 @@ namespace Villain_Names
     {
         static void Main()
         {
-            int villainId = int.Parse(Console.ReadLine());
+            //1.Write a program that prints on the console all villains' names and their number of minions of those
+            //who have more than 3 minions ordered descending by the number of minions.
+
+            //2.Write a program that prints on the console all minion names and
+            //ages for a given villain id, ordered by name alphabetically.
+            //If there is no villain with the given ID, print "No villain with ID <VillainId> exists in the database.".
+            //If the selected villain has no minions, print "(no minions)" on the second row.
+
+            int villainId = int.Parse(Console.ReadLine()!);
 
             using SqlConnection sqlConnection = new SqlConnection(Config.ConnectionString);
 
@@ -59,6 +67,7 @@ namespace Villain_Names
             getVillainNameCommand.Parameters.AddWithValue(@"VillainId", villainId);
 
             string villainName = (string)getVillainNameCommand.ExecuteScalar();
+
             if (villainName == null)
             {
                 return $"No villain with ID {villainId} exists in the database.";
@@ -68,8 +77,7 @@ namespace Villain_Names
 
             string minionsQuery = @"SELECT [m].[Name],
                                            [m].[Age]
-                                      FROM [MinionsVillains]
-                                        AS [mv]
+                                      FROM [MinionsVillains] AS [mv]
                                  LEFT JOIN [Minions] AS [m] ON [m].[Id] =[mv].[MinionId]
                                      WHERE [mv].[VillainId] = @VillainId
                                   ORDER BY [m].[Name]";
