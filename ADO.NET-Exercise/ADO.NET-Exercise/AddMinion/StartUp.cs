@@ -56,6 +56,8 @@ namespace AddMinion
                 sqlTransaction.Rollback();
                 return exception.Message;
             }
+
+            return "";
         }
 
         private static int GetVillainId(SqlConnection sqlConnection, SqlTransaction sqlTransaction, StringBuilder output, string villainName)
