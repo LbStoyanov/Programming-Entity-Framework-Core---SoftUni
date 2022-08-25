@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using Villain_Names;
 
 namespace AddMinion
@@ -36,6 +37,8 @@ namespace AddMinion
 
         private static string AddMinions(SqlConnection sqlConnection, string[] minionInfo,string villainName)
         {
+            StringBuilder output = new StringBuilder();
+            
             string minionName = minionInfo[0];
             int minionAge = int.Parse(minionInfo[1]);
             string minionTown = minionInfo[2];
@@ -43,33 +46,44 @@ namespace AddMinion
             SqlTransaction sqlTransaction = sqlConnection.BeginTransaction();
             try
             {
-                string townNameQuery = @"SELECT [Id]
-                                       FROM [Towns]
-                                      WHERE [Name] = @TownName";
-
-                SqlCommand townIdCommand = new SqlCommand(townNameQuery, sqlConnection, sqlTransaction);
-                townIdCommand.Parameters.AddWithValue("@TownName", minionTown);
-
-                object townIdObj = townIdCommand.ExecuteScalar();
-
-                if (townIdObj == null)
-                {
-                    string addTownQuery = @"INSERT INTO [Towns]([Name]) 
-                                                 VALUES ('@TownName')";
-
-                    SqlCommand addTownCommand = new SqlCommand(addTownQuery,sqlConnection,sqlTransaction);
-                    addTownCommand.Parameters.AddWithValue("@TownName", minionTown);
-                    addTownCommand.ExecuteNonQuery();
-
-                }
+                int townId = GetTownId(sqlConnection, sqlTransaction, output, minionTown);
             }
             catch (Exception exception)
             {
                 sqlTransaction.Rollback();
                 return exception.Message;
             }
+        }
 
+        private static int GetTownId(SqlConnection sqlConnection, SqlTransaction sqlTransaction, StringBuilder output,
+            string townName)
+        {
             
+            string townNameQuery = @"SELECT [Id]
+                                       FROM [Towns]
+                                      WHERE [Name] = @TownName";
+
+            SqlCommand townIdCommand = new SqlCommand(townNameQuery, sqlConnection, sqlTransaction);
+            townIdCommand.Parameters.AddWithValue("@TownName", townName);
+
+            object townIdObj = townIdCommand.ExecuteScalar();
+
+            if (townIdObj == null)
+            {
+                string addTownQuery = @"INSERT INTO [Towns]([Name]) 
+                                                 VALUES ('@TownName')";
+
+                SqlCommand addTownCommand = new SqlCommand(addTownQuery, sqlConnection, sqlTransaction);
+                addTownCommand.Parameters.AddWithValue("@TownName", townName);
+                addTownCommand.ExecuteNonQuery();
+                output.AppendLine($"Town {townName} was added to the database.");
+
+                townIdObj = townIdCommand.ExecuteScalar();
+            }
+
+
+
+            return (int)townIdObj;
         }
     }
 }
