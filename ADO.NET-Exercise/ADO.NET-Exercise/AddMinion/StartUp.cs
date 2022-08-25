@@ -49,17 +49,14 @@ namespace AddMinion
                 int townId = GetTownId(sqlConnection, sqlTransaction, output, minionTown);
                 int villainId = GetVillainId(sqlConnection, sqlTransaction, output, villainName);
 
-
+                sqlTransaction.Commit();
             }
             catch (Exception exception)
             {
                 sqlTransaction.Rollback();
                 return exception.Message;
             }
-            finally
-            {
-                sqlTransaction.Commit();
-            }
+           
 
             return output.ToString().TrimEnd();
         }
