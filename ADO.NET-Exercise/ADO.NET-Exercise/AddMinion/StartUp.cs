@@ -47,12 +47,44 @@ namespace AddMinion
             try
             {
                 int townId = GetTownId(sqlConnection, sqlTransaction, output, minionTown);
+                int villainId = GetVillainId(sqlConnection, sqlTransaction, output, villainName);
+
+                
             }
             catch (Exception exception)
             {
                 sqlTransaction.Rollback();
                 return exception.Message;
             }
+        }
+
+        private static int GetVillainId(SqlConnection sqlConnection, SqlTransaction sqlTransaction, StringBuilder output, string villainName)
+        {
+            string villainIdQuery = @"SELECT [Id]
+                                            FROM [Villains]
+                                           WHERE [Name] = @VillainName";
+
+            SqlCommand villainIdCommand = new SqlCommand(villainIdQuery, sqlConnection, sqlTransaction);
+
+            villainIdCommand.Parameters.AddWithValue("@VillainName", villainName);
+
+            object villainIdObj = villainIdCommand.ExecuteScalar();
+
+            if (villainIdObj == null)
+            {
+                string evilnessFactorQuery = @"INSERT INTO [Villains]([Name], [EvilnessFactorId]) 
+                                                 VALUES ('@evilnessFactor',4)";
+
+                SqlCommand addEvilnessFactor = new SqlCommand(evilnessFactorQuery, sqlConnection, sqlTransaction);
+
+                addEvilnessFactor.Parameters.AddWithValue("@VillainName", villainName);
+                addEvilnessFactor.ExecuteNonQuery();
+                output.AppendLine($"Villain {villainName} was added to the database.");
+
+                villainIdObj = villainIdCommand.ExecuteScalar();
+            }
+
+            return (int)villainIdObj;
         }
 
         private static int GetTownId(SqlConnection sqlConnection, SqlTransaction sqlTransaction, StringBuilder output,
