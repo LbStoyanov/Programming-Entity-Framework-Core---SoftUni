@@ -57,7 +57,7 @@ namespace AddMinion
                 return exception.Message;
             }
 
-            return "";
+            return output.ToString().TrimEnd();
         }
 
         private static int GetVillainId(SqlConnection sqlConnection, SqlTransaction sqlTransaction, StringBuilder output, string villainName)
