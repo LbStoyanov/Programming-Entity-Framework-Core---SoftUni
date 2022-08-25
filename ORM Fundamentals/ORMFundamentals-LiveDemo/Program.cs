@@ -10,9 +10,9 @@
 
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            using SoftUniDbContext dbContext = new SoftUniDbContext();
+            using var dbContext = new SoftUniDbContext();
 
             //int itDepId = dbContext
             //    .Departments
