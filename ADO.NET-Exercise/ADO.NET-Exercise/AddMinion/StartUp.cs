@@ -19,22 +19,57 @@ namespace AddMinion
                 .Split(" ",StringSplitOptions.RemoveEmptyEntries)
                 .ToArray();
 
-            string villainInfo = Console.ReadLine()!
+
+            string villainName = Console.ReadLine()!
                 .Split(": ", StringSplitOptions.RemoveEmptyEntries)[1];
+            
 
             using SqlConnection sqlConnection = new SqlConnection(Config.ConnectionString);
             sqlConnection.Open();
 
-            string result = AddMinions(sqlConnection);
+            string result = AddMinions(sqlConnection,minionInfo,villainName);
             Console.WriteLine(result);
             
             sqlConnection.Close();
 
         }
 
-        private static string AddMinions(SqlConnection sqlConnection)
+        private static string AddMinions(SqlConnection sqlConnection, string[] minionInfo,string villainName)
         {
+            string minionName = minionInfo[0];
+            int minionAge = int.Parse(minionInfo[1]);
+            string minionTown = minionInfo[2];
 
+            SqlTransaction sqlTransaction = sqlConnection.BeginTransaction();
+            try
+            {
+                string townNameQuery = @"SELECT [Id]
+                                       FROM [Towns]
+                                      WHERE [Name] = @TownName";
+
+                SqlCommand townIdCommand = new SqlCommand(townNameQuery, sqlConnection, sqlTransaction);
+                townIdCommand.Parameters.AddWithValue("@TownName", minionTown);
+
+                object townIdObj = townIdCommand.ExecuteScalar();
+
+                if (townIdObj == null)
+                {
+                    string addTownQuery = @"INSERT INTO [Towns]([Name]) 
+                                                 VALUES ('@TownName')";
+
+                    SqlCommand addTownCommand = new SqlCommand(addTownQuery,sqlConnection,sqlTransaction);
+                    addTownCommand.Parameters.AddWithValue("@TownName", minionTown);
+                    addTownCommand.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception exception)
+            {
+                sqlTransaction.Rollback();
+                return exception.Message;
+            }
+
+            
         }
     }
 }
