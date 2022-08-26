@@ -8,7 +8,7 @@ namespace EF_LiveDemo.Data.Models
         public Departments()
         {
             Employees = new HashSet<Employees>();
-        }
+        } 
 
         public int DepartmentId { get; set; }
         public string Name { get; set; }
