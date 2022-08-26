@@ -29,6 +29,12 @@ namespace CustomMiniORM
         public IReadOnlyCollection<TEntity> Read
             => (IReadOnlyCollection<TEntity>)this.removed;
 
+        public void Add(TEntity entity)
+            => this.added.Add(entity);
+
+        public void Remove(TEntity entity)
+            => this.removed.Add(entity);
+
         private IList<TEntity> CloneEntities(IEnumerable<TEntity> entities)
         {
             IList<TEntity> cloneEntities = new List<TEntity>();
