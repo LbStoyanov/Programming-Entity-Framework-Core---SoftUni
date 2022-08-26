@@ -1,4 +1,10 @@
-﻿namespace CustomMiniORM
+﻿using System;
+using System.Runtime.InteropServices.ComTypes;
+
+namespace CustomMiniORM
 {
-	// TODO: Create your DbContext class here.
+    public class DbContext
+    {
+        internal static Type[] AllowedSQLTypes = {typeof(int),typeof(string)};
+    }
 }
