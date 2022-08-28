@@ -14,6 +14,7 @@ namespace EF_LiveDemo.Data.Models
         public string Name { get; set; }
         public int? ManagerId { get; set; }
 
+
         public virtual Employees Manager { get; set; }
         public virtual ICollection<Employees> Employees { get; set; }
     }

@@ -7,7 +7,7 @@ namespace EF_LiveDemo.Data.Models
     {
         public Towns()
         {
-            Addresses = new HashSet<Addresses>();
+            this.Addresses = new HashSet<Addresses>();
         }
 
         public int TownId { get; set; }

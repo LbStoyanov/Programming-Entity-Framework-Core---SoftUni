@@ -7,7 +7,7 @@ namespace EF_LiveDemo.Data.Models
     {
         public Projects()
         {
-            EmployeesProjects = new HashSet<EmployeesProjects>();
+            this.EmployeesProjects = new HashSet<EmployeesProjects>();
         }
 
         public int ProjectId { get; set; }

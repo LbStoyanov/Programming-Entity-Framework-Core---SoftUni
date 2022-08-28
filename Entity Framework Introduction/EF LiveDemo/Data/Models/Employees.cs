@@ -7,9 +7,9 @@ namespace EF_LiveDemo.Data.Models
     {
         public Employees()
         {
-            Departments = new HashSet<Departments>();
-            EmployeesProjects = new HashSet<EmployeesProjects>();
-            InverseManager = new HashSet<Employees>();
+            this.Departments = new HashSet<Departments>();
+            this.EmployeesProjects = new HashSet<EmployeesProjects>();
+            this.InverseManager = new HashSet<Employees>();
         }
 
         public int EmployeeId { get; set; }
