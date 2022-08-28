@@ -1,9 +1,8 @@
 ﻿using System;
-using EF_LiveDemo.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace EF_LiveDemo.Data
+namespace SoftUni
 {
     public partial class SoftUniContext : DbContext
     {
@@ -16,12 +15,12 @@ namespace EF_LiveDemo.Data
         {
         }
 
-        public virtual DbSet<Addresses> Addresses { get; set; }
-        public virtual DbSet<Departments> Departments { get; set; }
-        public virtual DbSet<Employees> Employees { get; set; }
-        public virtual DbSet<EmployeesProjects> EmployeesProjects { get; set; }
-        public virtual DbSet<Projects> Projects { get; set; }
-        public virtual DbSet<Towns> Towns { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; } = null!;
+        public virtual DbSet<Department> Departments { get; set; } = null!;
+        public virtual DbSet<Employee> Employees { get; set; } = null!;
+        public virtual DbSet<EmployeesProject> EmployeesProjects { get; set; } = null!;
+        public virtual DbSet<Project> Projects { get; set; } = null!;
+        public virtual DbSet<Town> Towns { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,7 +32,7 @@ namespace EF_LiveDemo.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Addresses>(entity =>
+            modelBuilder.Entity<Address>(entity =>
             {
                 entity.Property(e => e.AddressText).IsUnicode(false);
 
@@ -43,7 +42,7 @@ namespace EF_LiveDemo.Data
                     .HasConstraintName("FK_Addresses_Towns");
             });
 
-            modelBuilder.Entity<Departments>(entity =>
+            modelBuilder.Entity<Department>(entity =>
             {
                 entity.Property(e => e.Name).IsUnicode(false);
 
@@ -53,7 +52,7 @@ namespace EF_LiveDemo.Data
                     .HasConstraintName("FK_Departments_Employees");
             });
 
-            modelBuilder.Entity<Employees>(entity =>
+            modelBuilder.Entity<Employee>(entity =>
             {
                 entity.Property(e => e.FirstName).IsUnicode(false);
 
@@ -80,7 +79,7 @@ namespace EF_LiveDemo.Data
                     .HasConstraintName("FK_Employees_Employees");
             });
 
-            modelBuilder.Entity<EmployeesProjects>(entity =>
+            modelBuilder.Entity<EmployeesProject>(entity =>
             {
                 entity.HasKey(e => new { e.EmployeeId, e.ProjectId });
 
@@ -97,12 +96,12 @@ namespace EF_LiveDemo.Data
                     .HasConstraintName("FK_EmployeesProjects_Projects");
             });
 
-            modelBuilder.Entity<Projects>(entity =>
+            modelBuilder.Entity<Project>(entity =>
             {
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
-            modelBuilder.Entity<Towns>(entity =>
+            modelBuilder.Entity<Town>(entity =>
             {
                 entity.Property(e => e.Name).IsUnicode(false);
             });

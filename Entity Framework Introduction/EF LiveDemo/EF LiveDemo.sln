@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF LiveDemo", "EF LiveDemo.csproj", "{BE1DBB5F-A24B-4C41-A750-22127D84365E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftUni", "SoftUni.csproj", "{BE1DBB5F-A24B-4C41-A750-22127D84365E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

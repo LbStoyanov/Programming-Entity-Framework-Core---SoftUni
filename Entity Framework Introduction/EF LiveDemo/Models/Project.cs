@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EF_LiveDemo.Models
+namespace SoftUni
 {
-    public partial class Projects
+    public partial class Project
     {
-        public Projects()
+        public Project()
         {
-            EmployeesProjects = new HashSet<EmployeesProjects>();
+            EmployeesProjects = new HashSet<EmployeesProject>();
         }
 
         [Key]
@@ -17,15 +17,15 @@ namespace EF_LiveDemo.Models
         public int ProjectId { get; set; }
         [Required]
         [StringLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         [Column(TypeName = "ntext")]
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
         [Column(TypeName = "smalldatetime")]
         public DateTime StartDate { get; set; }
         [Column(TypeName = "smalldatetime")]
         public DateTime? EndDate { get; set; }
 
         [InverseProperty("Project")]
-        public virtual ICollection<EmployeesProjects> EmployeesProjects { get; set; }
+        public virtual ICollection<EmployeesProject> EmployeesProjects { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace EF_LiveDemo
+﻿namespace SoftUni
 {
-    internal class Program
+    public class StartUp
     {
         static void Main(string[] args)
         {

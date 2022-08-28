@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EF_LiveDemo.Models
+namespace SoftUni
 {
-    public partial class Departments
+    public partial class Department
     {
-        public Departments()
+        public Department()
         {
-            Employees = new HashSet<Employees>();
+            Employees = new HashSet<Employee>();
         }
 
         [Key]
@@ -17,14 +17,14 @@ namespace EF_LiveDemo.Models
         public int DepartmentId { get; set; }
         [Required]
         [StringLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         [Column("ManagerID")]
         public int? ManagerId { get; set; }
 
         [ForeignKey(nameof(ManagerId))]
         [InverseProperty("Departments")]
-        public virtual Employees Manager { get; set; }
+        public virtual Employee Manager { get; set; } = null!;
         [InverseProperty("Department")]
-        public virtual ICollection<Employees> Employees { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; } = null!;
     }
 }
