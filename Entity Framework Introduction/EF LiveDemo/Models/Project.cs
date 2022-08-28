@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SoftUni
+namespace SoftUni.Models
 {
     public partial class Project
     {
         public Project()
         {
-            EmployeesProjects = new HashSet<EmployeesProject>();
+            EmployeesProjects = new HashSet<EmployeeProject>();
         }
 
         [Key]
@@ -26,6 +26,6 @@ namespace SoftUni
         public DateTime? EndDate { get; set; }
 
         [InverseProperty("Project")]
-        public virtual ICollection<EmployeesProject> EmployeesProjects { get; set; }
+        public virtual ICollection<EmployeeProject> EmployeesProjects { get; set; }
     }
 }

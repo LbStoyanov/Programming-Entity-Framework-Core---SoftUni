@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SoftUni
+namespace SoftUni.Models
 {
     public partial class Employee
     {
         public Employee()
         {
             Departments = new HashSet<Department>();
-            EmployeesProjects = new HashSet<EmployeesProject>();
+            EmployeesProjects = new HashSet<EmployeeProject>();
             InverseManager = new HashSet<Employee>();
         }
 
@@ -51,7 +51,7 @@ namespace SoftUni
         [InverseProperty("Manager")]
         public virtual ICollection<Department> Departments { get; set; } = null!;
         [InverseProperty("Employee")]
-        public virtual ICollection<EmployeesProject> EmployeesProjects { get; set; } = null!;
+        public virtual ICollection<EmployeeProject> EmployeesProjects { get; set; } = null!;
         [InverseProperty(nameof(Employee.Manager))]
         public virtual ICollection<Employee> InverseManager { get; set; } = null!;
     }

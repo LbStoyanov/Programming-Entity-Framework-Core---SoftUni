@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>EF_LiveDemo</RootNamespace>
+    <RootNamespace>SoftUni</RootNamespace>
     <ImplicitUsings>Desable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
