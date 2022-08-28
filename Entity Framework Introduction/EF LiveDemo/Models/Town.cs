@@ -19,6 +19,6 @@ namespace SoftUni.Models
         public string Name { get; set; } = null!;
 
         [InverseProperty("Town")]
-        public virtual ICollection<Address> Addresses { get; set; } = null!;
+        public virtual ICollection<Address> Addresses { get; set; }
     }
 }
