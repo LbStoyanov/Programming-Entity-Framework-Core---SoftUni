@@ -1,8 +1,9 @@
 ﻿using System;
+using EF_LiveDemo.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace EF_LiveDemo.Models
+namespace EF_LiveDemo.Data
 {
     public partial class SoftUniContext : DbContext
     {
