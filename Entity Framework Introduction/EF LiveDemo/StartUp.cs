@@ -14,6 +14,7 @@ namespace SoftUni
                 .Include(e => e.Address)
                 .ThenInclude(a => a.Town)
                 .FirstOrDefaultAsync();
+            Console.WriteLine(string.Join(", ",firstEmployee));
         }
     }
 }
