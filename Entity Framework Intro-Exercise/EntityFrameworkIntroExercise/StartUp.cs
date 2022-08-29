@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using SoftUni.Data;
 using SoftUni.Models;
 
@@ -14,7 +15,7 @@ namespace SoftUni
 
             //string result = GetEmployeesFullInformation(context);
             //string result = GetEmployeesWithSalaryOver50000(context);
-            string result = AddNewAddressToEmployee(context);
+            string result =  AddNewAddressToEmployee(context);
             //string result = GetEmployeesFromResearchAndDevelopment(context);
             Console.WriteLine(result);
         }
@@ -99,14 +100,22 @@ namespace SoftUni
             Address newAddress = new Address();
             newAddress.AddressText = "Vitoshka 15";
             newAddress.TownId = 4;
-            
+            context.Addresses.Add(newAddress);
+
             var employee = context.Employees.FirstOrDefault(x => x.LastName == "Nakov");
+
+           
             employee.Address = newAddress;
+             context.SaveChangesAsync();
 
             var addresses = context
-                .Addresses
+                .Employees
                 .OrderByDescending(x => x.AddressId)
                 .Take(10)
+                .Select(e => new 
+                {
+                    e.Address.AddressText
+                })
                 .ToList();
 
             foreach (var ad in addresses)
