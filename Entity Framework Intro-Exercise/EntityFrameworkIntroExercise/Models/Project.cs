@@ -1,15 +1,15 @@
-﻿using System;
+﻿#nullable disable
+
+using System;
 using System.Collections.Generic;
 
-#nullable disable
-
-namespace EntityFrameworkIntroExercise.Data.Models
+namespace SoftUni.Models
 {
     public partial class Project
     {
         public Project()
         {
-            EmployeesProjects = new HashSet<EmployeesProject>();
+            EmployeesProjects = new HashSet<EmployeeProject>();
         }
 
         public int ProjectId { get; set; }
@@ -18,6 +18,6 @@ namespace EntityFrameworkIntroExercise.Data.Models
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
-        public virtual ICollection<EmployeesProject> EmployeesProjects { get; set; }
+        public virtual ICollection<EmployeeProject> EmployeesProjects { get; set; }
     }
 }

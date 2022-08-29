@@ -1,11 +1,9 @@
-﻿using System;
-using EntityFrameworkIntroExercise.Data.Models;
+﻿#nullable disable
+
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using SoftUni.Models;
 
-#nullable disable
-
-namespace EntityFrameworkIntroExercise.Data
+namespace SoftUni.Data
 {
     public  class SoftUniContext : DbContext
     {
@@ -21,7 +19,7 @@ namespace EntityFrameworkIntroExercise.Data
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<EmployeesProject> EmployeesProjects { get; set; }
+        public virtual DbSet<EmployeeProject> EmployeesProjects { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Town> Towns { get; set; }
 
@@ -120,7 +118,7 @@ namespace EntityFrameworkIntroExercise.Data
                     .HasConstraintName("FK_Employees_Employees");
             });
 
-            modelBuilder.Entity<EmployeesProject>(entity =>
+            modelBuilder.Entity<EmployeeProject>(entity =>
             {
                 entity.HasKey(e => new { e.EmployeeId, e.ProjectId });
 

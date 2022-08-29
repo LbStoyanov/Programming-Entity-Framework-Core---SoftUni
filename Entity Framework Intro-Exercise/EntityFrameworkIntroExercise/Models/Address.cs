@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-#nullable disable
-
-namespace EntityFrameworkIntroExercise.Data.Models
+namespace SoftUni.Models
 {
-    public partial class Address
+    public  class Address
     {
         public Address()
         {
+            // ReSharper disable once VirtualMemberCallInConstructor
             Employees = new HashSet<Employee>();
         }
 

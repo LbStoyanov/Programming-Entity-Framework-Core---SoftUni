@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#nullable disable
 
-#nullable disable
-
-namespace EntityFrameworkIntroExercise.Data.Models
+namespace SoftUni.Models
 {
-    public partial class EmployeesProject
+    public  class EmployeeProject
     {
         public int EmployeeId { get; set; }
         public int ProjectId { get; set; }

@@ -1,16 +1,16 @@
-﻿using System;
+﻿#nullable disable
+
+using System;
 using System.Collections.Generic;
 
-#nullable disable
-
-namespace EntityFrameworkIntroExercise.Data.Models
+namespace SoftUni.Models
 {
-    public partial class Employee
+    public  class Employee
     {
         public Employee()
         {
             Departments = new HashSet<Department>();
-            EmployeesProjects = new HashSet<EmployeesProject>();
+            EmployeesProjects = new HashSet<EmployeeProject>();
             InverseManager = new HashSet<Employee>();
         }
 
@@ -29,7 +29,7 @@ namespace EntityFrameworkIntroExercise.Data.Models
         public virtual Department Department { get; set; }
         public virtual Employee Manager { get; set; }
         public virtual ICollection<Department> Departments { get; set; }
-        public virtual ICollection<EmployeesProject> EmployeesProjects { get; set; }
+        public virtual ICollection<EmployeeProject> EmployeesProjects { get; set; }
         public virtual ICollection<Employee> InverseManager { get; set; }
     }
 }

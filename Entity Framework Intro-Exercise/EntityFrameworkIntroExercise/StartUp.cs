@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EntityFrameworkIntroExercise
+namespace SoftUni
 {
     public class StartUp
     {
