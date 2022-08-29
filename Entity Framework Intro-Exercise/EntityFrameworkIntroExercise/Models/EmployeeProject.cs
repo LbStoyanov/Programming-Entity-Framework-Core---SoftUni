@@ -1,6 +1,4 @@
-﻿#nullable disable
-
-namespace SoftUni.Models
+﻿namespace SoftUni.Models
 {
     public  class EmployeeProject
     {
