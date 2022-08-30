@@ -232,6 +232,39 @@ namespace SoftUni
         {
             StringBuilder output = new StringBuilder();
 
+            var departmentWithMoreThan5Employees = 
+                context
+                    .Departments
+                    .Where(d => d.Employees.Count > 5)
+                    .OrderBy(d => d.Employees.Count)
+                    .ThenBy(d => d.Name)
+                    .Select(d => new
+                    {
+                        d.Name,
+                        ManagerFirstName = d.Manager.FirstName,
+                        ManagerLastName = d.Manager.LastName,
+                        d.Employees
+                      
+                    });
+
+            foreach (var department in departmentWithMoreThan5Employees)
+            {
+                output.AppendLine($"{department.Name} – {department.ManagerFirstName} {department.ManagerLastName}");
+                //Console.WriteLine($"{department.Name} – {department.ManagerFirstName} {department.ManagerLastName}");
+
+                var employees = 
+                    department
+                        .Employees
+                        .OrderBy(e => e.FirstName)
+                        .ThenBy(e => e.LastName);
+
+                foreach (var employee in employees)
+                {
+                    output.AppendLine($"{employee.FirstName} {employee.LastName} - {employee.JobTitle}");
+                    //Console.WriteLine($"{employee.FirstName} {employee.LastName} - {employee.JobTitle}");
+                }
+            }
+
 
             return output.ToString().TrimEnd();
 
