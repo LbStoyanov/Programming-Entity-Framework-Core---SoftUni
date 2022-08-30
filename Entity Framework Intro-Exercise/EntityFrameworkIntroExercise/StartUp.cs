@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace SoftUni
 {
@@ -19,7 +20,8 @@ namespace SoftUni
             //string result = GetEmployeesFromResearchAndDevelopment(context);
             //string result = GetEmployeesInPeriod(context);
             //string result = GetAddressesByTown(context);
-            string result = GetEmployee147(context);
+            //string result = GetEmployee147(context);
+            string result = GetDepartmentsWithMoreThan5Employees(context);
 
             Console.WriteLine(result);
         }
@@ -205,16 +207,34 @@ namespace SoftUni
             StringBuilder output = new StringBuilder();
 
 
-            var searchedEmployee = context.Employees.First(e => e.EmployeeId == 147);
+            var searchedEmployee = context.Employees
+                .Include(e => e.EmployeesProjects)
+                .ThenInclude(ep => ep.Project)
+                .First(e => e.EmployeeId == 147);
+            
 
             output.AppendLine($"{searchedEmployee.FirstName} {searchedEmployee.LastName} - {searchedEmployee.JobTitle}");
 
-            var employeeProjects = searchedEmployee.EmployeesProjects.Where(x => x.EmployeeId == 147);
+            var employeeProjects =
+                searchedEmployee.EmployeesProjects.OrderBy(ep => ep.Project.Name);
 
-           
-                
+            foreach (var project in employeeProjects)
+            {
+                output.AppendLine(project.Project.Name);
+            }
+
+            
 
             return output.ToString().TrimEnd();
+        }
+
+        public static string GetDepartmentsWithMoreThan5Employees(SoftUniContext context)
+        {
+            StringBuilder output = new StringBuilder();
+
+
+            return output.ToString().TrimEnd();
+
         }
 
     }
