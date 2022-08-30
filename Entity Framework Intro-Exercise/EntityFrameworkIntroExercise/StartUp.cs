@@ -280,20 +280,20 @@ namespace SoftUni
 
             var last10StartedProjects = context
                 .Projects
-                .Where(x => x.StartDate != null)
-                .TakeLast(10)
-                .OrderBy(p => p.Name)
+                .OrderByDescending(p => p.StartDate)
                 .Select(p => new
                 {
                     p.Name,
                     p.Description,
                     p.StartDate
-                });
+                })
+                .Take(10)
+                .ToList();
+                
+            
+            var convertedProjects = last10StartedProjects.OrderBy(p => p.Name);
 
-
-
-
-            foreach (var project in last10StartedProjects)
+            foreach (var project in convertedProjects)
             {
                 output.AppendLine($"{project.Name}");
                 output.AppendLine($"{project.Description}");
