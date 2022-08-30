@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using SoftUni.Data;
+﻿using SoftUni.Data;
 using SoftUni.Models;
+using System;
+using System.Linq;
+using System.Text;
 
 namespace SoftUni
 {
