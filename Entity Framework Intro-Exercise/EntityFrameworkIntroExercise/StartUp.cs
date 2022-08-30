@@ -1,6 +1,7 @@
 ﻿using SoftUni.Data;
 using SoftUni.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -16,7 +17,8 @@ namespace SoftUni
             //string result = GetEmployeesWithSalaryOver50000(context);
             //string result =  AddNewAddressToEmployee(context);
             //string result = GetEmployeesFromResearchAndDevelopment(context);
-            string result = GetEmployeesInPeriod(context);
+            //string result = GetEmployeesInPeriod(context);
+            string result = GetAddressesByTown(context);
 
             Console.WriteLine(result);
         }
@@ -164,6 +166,34 @@ namespace SoftUni
 
                     output.AppendLine($"--{project.ProjectName} - {startDate} - {endDate}");
                 }
+            }
+
+            return output.ToString().TrimEnd();
+        }
+
+        public static string GetAddressesByTown(SoftUniContext context)
+        {
+            StringBuilder output = new StringBuilder();
+
+            var allAddressesInTown = context
+                .Addresses
+                .OrderByDescending(x => x.Employees.Count)
+                .ThenBy(t => t.Town.Name)
+                .ThenBy(a => a.AddressText)
+                .Take(10)
+                .Select(a => new
+                {
+                    Text = a.AddressText,
+                    Town = a.Town.Name,
+                    EmployeesCount = a.Employees.Count
+                })
+                .ToList();
+
+
+            foreach (var address in allAddressesInTown)
+            {
+               
+                output.AppendLine($"{address.Text}, {address.Town} - {address.EmployeesCount} employees");
             }
 
             return output.ToString().TrimEnd();
