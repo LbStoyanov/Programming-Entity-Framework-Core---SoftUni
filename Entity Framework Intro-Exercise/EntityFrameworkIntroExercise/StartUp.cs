@@ -18,7 +18,8 @@ namespace SoftUni
             //string result =  AddNewAddressToEmployee(context);
             //string result = GetEmployeesFromResearchAndDevelopment(context);
             //string result = GetEmployeesInPeriod(context);
-            string result = GetAddressesByTown(context);
+            //string result = GetAddressesByTown(context);
+            string result = GetEmployee147(context);
 
             Console.WriteLine(result);
         }
@@ -195,6 +196,23 @@ namespace SoftUni
                
                 output.AppendLine($"{address.Text}, {address.Town} - {address.EmployeesCount} employees");
             }
+
+            return output.ToString().TrimEnd();
+        }
+
+        public static string GetEmployee147(SoftUniContext context)
+        {
+            StringBuilder output = new StringBuilder();
+
+
+            var searchedEmployee = context.Employees.First(e => e.EmployeeId == 147);
+
+            output.AppendLine($"{searchedEmployee.FirstName} {searchedEmployee.LastName} - {searchedEmployee.JobTitle}");
+
+            var employeeProjects = searchedEmployee.EmployeesProjects.Where(x => x.EmployeeId == 147);
+
+           
+                
 
             return output.ToString().TrimEnd();
         }
