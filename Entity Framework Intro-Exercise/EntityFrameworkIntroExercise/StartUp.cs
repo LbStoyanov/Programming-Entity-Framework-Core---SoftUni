@@ -290,7 +290,6 @@ namespace SoftUni
                 .Take(10)
                 .ToList();
                 
-            
             var convertedProjects = last10StartedProjects.OrderBy(p => p.Name);
 
             foreach (var project in convertedProjects)
