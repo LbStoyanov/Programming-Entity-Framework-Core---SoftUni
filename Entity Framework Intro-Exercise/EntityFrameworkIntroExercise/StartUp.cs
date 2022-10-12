@@ -16,12 +16,13 @@ namespace SoftUni
 
             //string result = GetEmployeesFullInformation(context);
             //string result = GetEmployeesWithSalaryOver50000(context);
-            //string result =  AddNewAddressToEmployee(context);
+            //string result = AddNewAddressToEmployee(context);
             //string result = GetEmployeesFromResearchAndDevelopment(context);
             //string result = GetEmployeesInPeriod(context);
             //string result = GetAddressesByTown(context);
             //string result = GetEmployee147(context);
             //string result = GetDepartmentsWithMoreThan5Employees(context);
+            //string result = GetLatestProjects(context);
             string result = GetLatestProjects(context);
 
             Console.WriteLine(result);
