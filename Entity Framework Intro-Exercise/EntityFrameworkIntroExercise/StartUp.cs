@@ -23,7 +23,7 @@ namespace SoftUni
             //string result = GetEmployee147(context);
             //string result = GetDepartmentsWithMoreThan5Employees(context);
             //string result = GetLatestProjects(context);
-            string result = GetLatestProjects(context);
+            string result = IncreaseSalaries(context);
 
             Console.WriteLine(result);
         }
@@ -303,6 +303,16 @@ namespace SoftUni
                 
 
             return output.ToString().TrimEnd();
+        }
+
+        public static string IncreaseSalaries(SoftUniContext context)
+        {
+
+
+
+
+
+            return "";
         }
 
     }
