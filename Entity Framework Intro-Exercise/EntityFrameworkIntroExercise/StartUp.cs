@@ -323,9 +323,12 @@ namespace SoftUni
             foreach (var employee in searchedEmployees)
             {
                 employee.Salary += employee.Salary * 0.12m;
+              
                 output.AppendLine($"{employee.FirstName} {employee.LastName} (${employee.Salary:f2})");
                 
             }
+
+            
             
             return output.ToString().TrimEnd();
         }
