@@ -14,5 +14,11 @@ namespace P01_StudentSystem.Data.Models
         [Required]
         [MaxLength(GlobalConstants.ResourceNameMaxLength)]
         public string Name { get; set; }
+        [MaxLength(GlobalConstants.ResourceUrlMaxLength)]
+        public string Url { get; set; }
+
+        public Enum ResourceType { get; set; }
+
+        public int CourseID { get; set; }
     }
 }
