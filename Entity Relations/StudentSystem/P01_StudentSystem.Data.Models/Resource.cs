@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using P01_StudentSystem.Data.Models.Enums;
 
 namespace P01_StudentSystem.Data.Models
 {
@@ -16,8 +17,8 @@ namespace P01_StudentSystem.Data.Models
         public string Name { get; set; }
         [MaxLength(GlobalConstants.ResourceUrlMaxLength)]
         public string Url { get; set; }
-
-        public Enum ResourceType { get; set; }
+        [Required]
+        public ResourceType ResourceType { get; set; }
 
         public int CourseID { get; set; }
     }
