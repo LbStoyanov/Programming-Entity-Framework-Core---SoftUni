@@ -16,6 +16,12 @@ namespace P03_FootballBetting.Data.Common
         public const int TownNameMaxLength = 85;
 
         //Country
-        public const int CountryNameMaxLength = 700;
+        public const int CountryNameMaxLength = 60;
+
+        //Player
+        public const int PlayerNameMaxLength = 50;
+
+        //Postion
+        public const int PositionNameMaxLength = 30;
     }
 }
