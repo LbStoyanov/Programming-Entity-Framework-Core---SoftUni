@@ -23,5 +23,14 @@ namespace P03_FootballBetting.Data.Common
 
         //Postion
         public const int PositionNameMaxLength = 30;
+
+        //Game
+        public const int GameResultMaxLength = 10;
+
+        //User
+        public const int UserUsernameMaxLength = 50;
+        public const int UserPasswordMaxLength = 256;
+        public const int UserEmailMaxLength = 320;
+        public const int UserNameMaxLength = 747;
     }
 }

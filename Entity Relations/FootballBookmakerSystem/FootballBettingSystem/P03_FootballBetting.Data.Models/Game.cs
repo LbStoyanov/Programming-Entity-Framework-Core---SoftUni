@@ -1,4 +1,5 @@
-﻿using System;
+﻿using P03_FootballBetting.Data.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -16,9 +17,10 @@ namespace P03_FootballBetting.Data.Models
         public DateTime DateTime { get; set; }
         public double HomeTeamBetRate { get; set; }
         public double AwayTeamBetRate { get; set; }
+        public double DrawBetRate { get; set; }
 
-        
-
+        [MaxLength(GlobalConstants.GameResultMaxLength)]
+        public string Result { get; set; }
 
     }
 }
