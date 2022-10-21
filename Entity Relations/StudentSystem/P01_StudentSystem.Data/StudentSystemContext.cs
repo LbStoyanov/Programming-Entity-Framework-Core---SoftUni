@@ -3,7 +3,7 @@
 
 namespace P01_StudentSystem.Data
 {
-    public class Class1
+    public class StudentSystemContext
     {
         //Here we configurate the DBContext class
         //FluentAPI

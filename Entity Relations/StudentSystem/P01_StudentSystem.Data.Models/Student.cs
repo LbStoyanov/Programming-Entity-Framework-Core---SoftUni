@@ -31,7 +31,7 @@ namespace P01_StudentSystem.Data.Models
         [MaxLength(GlobalConstants.PhoneNumberMaxLength)]
         public int PhoneNumber { get; set; }
 
-        public DateTime RegistrationOn { get; set; }
+        public DateTime RegistеredOn { get; set; }
 
         public DateTime Birthday { get; set; }
 
