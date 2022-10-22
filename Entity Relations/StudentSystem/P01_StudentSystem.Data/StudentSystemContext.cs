@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace P01_StudentSystem.Data
 {
-    public class StudentSystemContext : DbContext
+    public class StudentSystemContext
     {
         //Here we configurate the DBContext class
         //FluentAPI
