@@ -10,6 +10,10 @@ namespace P03_FootballBetting.Data.Models
 {
     public class Player
     {
+        public Player()
+        {
+            this.PlayerStatistics = new HashSet<PlayerStatistic>();
+        }
         [Key]
         public int PlayerId { get; set; }
 
@@ -31,6 +35,8 @@ namespace P03_FootballBetting.Data.Models
         public virtual Position Position { get; set; }
 
         public bool IsInjured { get; set; }
+
+        public virtual ICollection<PlayerStatistic> PlayerStatistics { get; set; }
 
 
     }

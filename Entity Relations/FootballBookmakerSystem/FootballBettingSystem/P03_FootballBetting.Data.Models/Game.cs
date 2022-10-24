@@ -9,6 +9,11 @@ namespace P03_FootballBetting.Data.Models
 {
     public class Game
     {
+        public Game()
+        {
+            this.PlayerStatistics = new HashSet<PlayerStatistic>();
+            this.Bets = new HashSet<Bet>();
+        }
         [Key]
         public int GameId { get; set; }
 
@@ -29,6 +34,9 @@ namespace P03_FootballBetting.Data.Models
 
         [MaxLength(GlobalConstants.GameResultMaxLength)]
         public string Result { get; set; }
+
+        public virtual ICollection<PlayerStatistic> PlayerStatistics { get; set; }
+        public virtual ICollection<Bet> Bets { get; set; }
 
     }
 }
