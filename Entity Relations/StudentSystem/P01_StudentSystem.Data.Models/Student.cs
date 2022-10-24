@@ -10,14 +10,11 @@ namespace P01_StudentSystem.Data.Models
 {
     public class Student
     {
-
-        private ICollection<Course> courseEnrollments;
-        private ICollection<Homework> homeworkSubmissions;
-
         public Student()
         {
-            this.courseEnrollments = new HashSet<Course>();
-            this.homeworkSubmissions = new HashSet<Homework>();
+            this.CourseEnrollments = new HashSet<Course>();
+            this.HomeworkSubmissions = new HashSet<Homework>();
+            this.StudentCourses = new HashSet<StudentCourse>();
         }
         //Entities
         //DB Schema
@@ -35,30 +32,12 @@ namespace P01_StudentSystem.Data.Models
 
         public DateTime Birthday { get; set; }
 
-        public virtual ICollection<Course> CourseEnrollments
-        {
-            get
-            {
-                return this.courseEnrollments;
-            }
+        public virtual ICollection<Course> CourseEnrollments { get; set; }
+        
+        public virtual ICollection<Homework> HomeworkSubmissions { get; set; }
 
-            set
-            {
-                this.courseEnrollments = value;
-            }
-        }
+        public virtual ICollection<StudentCourse> StudentCourses { get; set; }
 
-        public virtual ICollection<Homework> HomeworkSubmissions
-        {
-            get
-            {
-                return this.homeworkSubmissions;
-            }
-            set
-            {
-                this.homeworkSubmissions = value;
-            }
-        }
 
 
 

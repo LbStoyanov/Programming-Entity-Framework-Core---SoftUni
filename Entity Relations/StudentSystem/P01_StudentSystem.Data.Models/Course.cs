@@ -9,15 +9,13 @@ namespace P01_StudentSystem.Data.Models
 {
     public class Course
     {
-        private ICollection<Student> studentsEnrolled;
-        private ICollection<Resource> resources;
-        private ICollection<Homework> homeworkSubmissions;
-
+    
         public Course()
         {
-            this.studentsEnrolled = new HashSet<Student>();
-            this.resources = new HashSet<Resource>();
-            this.homeworkSubmissions = new HashSet<Homework>();
+            this.StudentsEnrolled = new HashSet<Student>();
+            this.Resources = new HashSet<Resource>();
+            this.HomeworkSubmissions = new HashSet<Homework>();
+            this.StudentCourses = new HashSet<StudentCourse>();
         }
         [Key]
         public int CourseId { get; set; }
@@ -33,45 +31,14 @@ namespace P01_StudentSystem.Data.Models
 
         public decimal Price { get; set; }
 
-        public virtual ICollection<Student> StudentsEnrolled
-        {
-            get
-            {
-                return this.studentsEnrolled;
-            }
+        public virtual ICollection<Student> StudentsEnrolled { get; set; }
 
-            set
-            {
-                this.studentsEnrolled = value;
-            }
-        }
+        public virtual ICollection<Resource> Resources { get; set; }
 
+        public virtual ICollection<Homework> HomeworkSubmissions { get; set; }
 
-        public virtual ICollection<Resource> Resources
-        {
-            get
-            {
-                return this.resources;
-            }
+        public virtual ICollection<StudentCourse> StudentCourses { get; set; }
 
-            set
-            {
-                this.resources = value;
-            }
-        }
-
-        public virtual ICollection<Homework> HomeworkSubmissions
-        {
-            get
-            {
-                return this.homeworkSubmissions;
-            }
-
-            set
-            {
-                this.homeworkSubmissions = value;
-            }
-        }
     }
 }
 
