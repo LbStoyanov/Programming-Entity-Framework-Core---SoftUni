@@ -37,13 +37,13 @@ namespace P03_FootballBetting.Data.Migrations
                 name: "Positions",
                 columns: table => new
                 {
-                    PostionId = table.Column<int>(nullable: false)
+                    PositionId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PostionName = table.Column<string>(maxLength: 30, nullable: false)
+                    PositionName = table.Column<string>(maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Positions", x => x.PostionId);
+                    table.PrimaryKey("PK_Positions", x => x.PositionId);
                 });
 
             migrationBuilder.CreateTable(
@@ -161,7 +161,7 @@ namespace P03_FootballBetting.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     SquadNumber = table.Column<int>(nullable: false),
-                    TeamId = table.Column<int>(nullable: true),
+                    TeamId = table.Column<int>(nullable: false),
                     PositionId = table.Column<int>(nullable: false),
                     IsInjured = table.Column<bool>(nullable: false)
                 },
@@ -172,14 +172,14 @@ namespace P03_FootballBetting.Data.Migrations
                         name: "FK_Players_Positions_PositionId",
                         column: x => x.PositionId,
                         principalTable: "Positions",
-                        principalColumn: "PostionId",
+                        principalColumn: "PositionId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Players_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

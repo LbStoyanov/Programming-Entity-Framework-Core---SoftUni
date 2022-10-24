@@ -149,7 +149,7 @@ namespace P03_FootballBetting.Data.Migrations
                     b.Property<int>("SquadNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TeamId")
+                    b.Property<int>("TeamId")
                         .HasColumnType("int");
 
                     b.HasKey("PlayerId");
@@ -187,17 +187,17 @@ namespace P03_FootballBetting.Data.Migrations
 
             modelBuilder.Entity("P03_FootballBetting.Data.Models.Position", b =>
                 {
-                    b.Property<int>("PostionId")
+                    b.Property<int>("PositionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("PostionName")
+                    b.Property<string>("PositionName")
                         .IsRequired()
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
-                    b.HasKey("PostionId");
+                    b.HasKey("PositionId");
 
                     b.ToTable("Positions");
                 });
@@ -343,7 +343,9 @@ namespace P03_FootballBetting.Data.Migrations
 
                     b.HasOne("P03_FootballBetting.Data.Models.Team", "Team")
                         .WithMany("Players")
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("P03_FootballBetting.Data.Models.PlayerStatistic", b =>
