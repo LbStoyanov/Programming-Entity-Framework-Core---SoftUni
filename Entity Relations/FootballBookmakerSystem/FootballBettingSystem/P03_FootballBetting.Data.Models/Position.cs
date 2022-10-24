@@ -13,11 +13,11 @@ namespace P03_FootballBetting.Data.Models
             this.Players = new HashSet<Player>();
         }
         [Key]
-        public int PostionId { get; set; }
+        public int PositionId { get; set; }
 
         [Required]
         [MaxLength(GlobalConstants.PositionNameMaxLength)]
-        public string PostionName { get; set; }
+        public string PositionName { get; set; }
 
         public virtual ICollection<Player> Players { get; set; }
     }

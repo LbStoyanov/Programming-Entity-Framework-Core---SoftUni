@@ -26,7 +26,7 @@ namespace P03_FootballBetting.Data.Models
         public int SquadNumber { get; set; }
 
         [ForeignKey(nameof(Team))]
-        public int? TeamId { get; set; }
+        public int TeamId { get; set; }
         public virtual Team Team { get; set; }
 
 
