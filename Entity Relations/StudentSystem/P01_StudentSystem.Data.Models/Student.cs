@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using P01StudentSystem.Data.Common;
 
 
@@ -12,7 +13,7 @@ namespace P01_StudentSystem.Data.Models
     {
         public Student()
         {
-            this.CourseEnrollments = new HashSet<Course>();
+            //this.CourseEnrollments = new HashSet<Course>();
             this.HomeworkSubmissions = new HashSet<Homework>();
             this.StudentCourses = new HashSet<StudentCourse>();
         }
@@ -28,19 +29,16 @@ namespace P01_StudentSystem.Data.Models
         [MaxLength(GlobalConstants.PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; }
 
-        [Required]
+       
         public DateTime RegistеredOn { get; set; }
 
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
 
-        public virtual ICollection<Course> CourseEnrollments { get; set; }
+        //public virtual ICollection<Course> CourseEnrollments { get; set; }
         
         public virtual ICollection<Homework> HomeworkSubmissions { get; set; }
 
         public virtual ICollection<StudentCourse> StudentCourses { get; set; }
-
-
-
 
     }
 }

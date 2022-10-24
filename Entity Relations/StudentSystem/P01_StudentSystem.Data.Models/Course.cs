@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using P01StudentSystem.Data.Common;
 // ReSharper disable All
@@ -12,7 +13,7 @@ namespace P01_StudentSystem.Data.Models
     
         public Course()
         {
-            this.StudentsEnrolled = new HashSet<Student>();
+            //this.StudentsEnrolled = new HashSet<Student>();
             this.Resources = new HashSet<Resource>();
             this.HomeworkSubmissions = new HashSet<Homework>();
             this.StudentCourses = new HashSet<StudentCourse>();
@@ -31,13 +32,13 @@ namespace P01_StudentSystem.Data.Models
 
         public decimal Price { get; set; }
 
-        public virtual ICollection<Student> StudentsEnrolled { get; set; }
+        //public virtual ICollection<Student> StudentsEnrolled { get; set; }
 
         public virtual ICollection<Resource> Resources { get; set; }
 
         public virtual ICollection<Homework> HomeworkSubmissions { get; set; }
 
-        public virtual ICollection<StudentCourse> StudentCourses { get; set; }
+       public virtual ICollection<StudentCourse> StudentCourses { get; set; }
 
     }
 }
