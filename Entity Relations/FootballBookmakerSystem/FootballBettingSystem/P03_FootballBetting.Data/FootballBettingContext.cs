@@ -1,0 +1,65 @@
+﻿using Microsoft.EntityFrameworkCore;
+using P03_FootballBetting.Data.Models;
+using System;
+
+namespace P03_FootballBetting.Data
+{
+    //testing
+    public class FootballBettingContext : DbContext
+    {
+        public FootballBettingContext()
+        {
+
+        }
+
+        //Judje
+        public FootballBettingContext(DbContextOptions options)
+            :base(options)
+        {
+
+        }
+
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Town> Towns { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<PlayerStatistic> PlayerStatistics { get; set; }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Bet> Bets { get; set; }
+        public DbSet<User> Users { get; set; }
+
+        //Establishing a connection to the SQL Server
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            //True => Connection string is already set
+            //False=> Connection string is not set
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(Config.ConnectionString);
+            }
+        }
+
+        //Defining rules for creating db
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //Composite PK of mapping entity
+            modelBuilder.Entity<PlayerStatistic>(e =>
+            {
+                //Configuration for current entity(PlayerStatistics)
+                //Composite Key Creation
+
+                e.HasKey(ps => new { ps.PlayerId, ps.GameId });
+            });
+
+            modelBuilder.Entity<Team>()
+                .HasOne(t => t.PrimaryKitColor)
+                .WithMany(c => c.PrimaryKitTeams)
+                .HasForeignKey(t => t.PrimaryKitColorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+        }
+    }
+}
