@@ -26,8 +26,9 @@ namespace P01_StudentSystem.Data.Models
         public string Name { get; set; }
 
         [MaxLength(GlobalConstants.PhoneNumberMaxLength)]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
+        [Required]
         public DateTime RegistеredOn { get; set; }
 
         public DateTime Birthday { get; set; }
