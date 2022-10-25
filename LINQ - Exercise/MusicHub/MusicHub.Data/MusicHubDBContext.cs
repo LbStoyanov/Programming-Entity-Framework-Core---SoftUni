@@ -7,14 +7,14 @@ using System.Text;
 
 namespace MusicHub.Data
 {
-    public class MusicHubDBContext : DbContext
+    public class MusicHubDbContext : DbContext
     {
-        public MusicHubDBContext()
+        public MusicHubDbContext()
         {
 
         }
 
-        public MusicHubDBContext(DbContextOptions options)
+        public MusicHubDbContext(DbContextOptions options)
             :base(options)
         {
 
