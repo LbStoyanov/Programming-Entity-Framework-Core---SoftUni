@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MusicHub.Data.Models\MusicHub.Data.Models.csproj" />
     <ProjectReference Include="..\MusicHub.Data\MusicHub.Data.csproj" />
   </ItemGroup>
 
