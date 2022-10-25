@@ -8,7 +8,7 @@ using MusicHub.Data;
 
 namespace MusicHub.Data.Migrations
 {
-    [DbContext(typeof(MusicHubDBContext))]
+    [DbContext(typeof(MusicHubDbContext))]
     partial class MusicHubDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

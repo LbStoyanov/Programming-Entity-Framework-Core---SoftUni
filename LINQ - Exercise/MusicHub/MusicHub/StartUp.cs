@@ -3,8 +3,6 @@
     using System;
 
     using Data;
-    using Initializer;
-    using MusicHub.Data;
 
     public class StartUp
     {

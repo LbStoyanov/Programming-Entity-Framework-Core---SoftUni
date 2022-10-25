@@ -9,7 +9,7 @@ using MusicHub.Data;
 
 namespace MusicHub.Data.Migrations
 {
-    [DbContext(typeof(MusicHubDBContext))]
+    [DbContext(typeof(MusicHubDbContext))]
     [Migration("20221025140939_InitialMigration")]
     partial class InitialMigration
     {
