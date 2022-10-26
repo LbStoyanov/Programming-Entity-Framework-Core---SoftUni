@@ -3,12 +3,13 @@
     using System;
 
     using Data;
+    using Initializer;
 
     public class StartUp
     {
         public static void Main(string[] args)
         {
-            MusicHubDbContext context =
+            MusicHubDbContext context = 
                 new MusicHubDbContext();
 
             DbInitializer.ResetDatabase(context);
