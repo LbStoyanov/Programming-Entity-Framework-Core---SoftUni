@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace MusicHub.Data.Models
+namespace MusicHub
 {
     public class Writer
     {

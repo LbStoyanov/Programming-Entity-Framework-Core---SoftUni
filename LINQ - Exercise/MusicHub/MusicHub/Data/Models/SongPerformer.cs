@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace MusicHub.Data.Models
+namespace MusicHub
 {
     public class SongPerformer
     {

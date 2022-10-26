@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Data;
+using Microsoft.EntityFrameworkCore;
 using MusicHub.Data.Models;
-using P03_FootballBetting.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
