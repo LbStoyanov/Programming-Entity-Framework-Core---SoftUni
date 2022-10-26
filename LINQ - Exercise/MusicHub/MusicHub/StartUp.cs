@@ -117,6 +117,7 @@
                 result.AppendLine($"---Performer: {song.PerformerFullName}");
                 result.AppendLine($"---AlbumProducer: {song.AlbumProducer}");
                 result.AppendLine($"---Duration: {song.Duration}");
+                Console.WriteLine(result.ToString().TrimEnd());
 
                 songCounter++;
             }
