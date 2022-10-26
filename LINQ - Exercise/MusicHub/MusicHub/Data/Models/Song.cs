@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MusicHub
+namespace MusicHub.Data.Models
 {
     public class Song
     {
@@ -30,13 +30,13 @@ namespace MusicHub
         public Genre Genre { get; set; }
 
         [ForeignKey(nameof(Album))]
-        public int AlbumId { get; set; }
+        public int? AlbumId { get; set; }
         public virtual Album Album { get; set; }
 
         
         [ForeignKey(nameof(Writer))]
         public int WriterId { get; set; }
-        public Writer Writer { get; set; }
+        public virtual Writer Writer { get; set; }
 
         
         public decimal Price { get; set; }

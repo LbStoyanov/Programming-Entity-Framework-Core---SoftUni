@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data
+namespace MusicHub.Data
 {
-    public static class Config
+    public static class Configuration
     {
         public const string ConnectionString = @"Server=DESKTOP-EH9QDAI;Database=MusicHub;Integrated Security=True";
     }

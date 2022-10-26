@@ -1,12 +1,11 @@
-﻿using MusicHub.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace MusicHub
+namespace MusicHub.Data.Models
 {
     public class Album
     {
@@ -24,12 +23,12 @@ namespace MusicHub
         [Required]
         public DateTime ReleaseDate { get; set; }
 
-        
+        [NotMapped]
         public decimal Price 
-            => this.Songs.Sum(s=> s.Price);
+            => this.Songs.Count > 0 ? this.Songs.Sum(s=> s.Price) : 0m;
 
         [ForeignKey(nameof(Producer))]
-        public int ProducerId { get; set; }
+        public int? ProducerId { get; set; }
 
         public Producer Producer { get; set; }
 

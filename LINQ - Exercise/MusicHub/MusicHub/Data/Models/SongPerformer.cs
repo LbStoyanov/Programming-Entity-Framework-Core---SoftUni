@@ -4,18 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace MusicHub
+namespace MusicHub.Data.Models
 {
     public class SongPerformer
     {
         [ForeignKey(nameof(Song))]
         public int SongId { get; set; }
-        public Song Song { get; set; }
+        public virtual Song Song { get; set; }
 
 
         [ForeignKey(nameof(Performer))]
-        public int PerforemrId { get; set; }
-        public Performer Performer { get; set; }
+        public int PerformerId { get; set; }
+        public virtual Performer Performer { get; set; }
 
     }
 }

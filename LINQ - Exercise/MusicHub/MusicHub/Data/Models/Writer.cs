@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace MusicHub
+namespace MusicHub.Data.Models
 {
     public class Writer
     {
@@ -20,6 +20,6 @@ namespace MusicHub
 
         public string Pseudonym { get; set; }
 
-        public ICollection<Song> Songs { get; set; }
+        public virtual ICollection<Song> Songs { get; set; }
     }
 }
