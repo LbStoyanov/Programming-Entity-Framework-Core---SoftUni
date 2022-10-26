@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MusicHub.Data.Common
+namespace MusicHub
 {
     public static class GlobalConstants
     {
