@@ -12,13 +12,7 @@
     {
         public static void Main()
         {
-            //TASK-01-Age Restriction:
-
-            //Return in a single string all book titles, each on a new line, that have an age restriction, equal to 
-            //the given command. Order the titles alphabetically.
-            //Read input from the console in your main method and call your method with the necessary arguments.
-            //Print the returned string to the console. Ignore the casing of the input.
-            //Use method public static string GetBooksByAgeRestriction(BookShopContext context, string command)
+            
 
 
             using var db = new BookShopContext();
@@ -33,23 +27,18 @@
             Console.WriteLine(result);
         }
 
-        public static string GetGoldenBooks(BookShopContext context)
-        {
-            //StringBuilder result = new StringBuilder();
-
-            var goldenBooks = context
-                .Books
-                .Where(b => b.Copies < 5000 && b.EditionType == EditionType.Gold)
-                .OrderBy(b => b.BookId)
-                .Select(b=>b.Title)              
-                .ToList();
-           
-
-            return String.Join(Environment.NewLine,goldenBooks);
-        }
+       
 
         public static string GetBooksByAgeRestriction(BookShopContext context, string command)
         {
+            //TASK-01-Age Restriction:
+
+            //Return in a single string all book titles, each on a new line, that have an age restriction, equal to 
+            //the given command. Order the titles alphabetically.
+            //Read input from the console in your main method and call your method with the necessary arguments.
+            //Print the returned string to the console. Ignore the casing of the input.
+            //Use method public static string GetBooksByAgeRestriction(BookShopContext context, string command)
+
             AgeRestriction ageRestriction;
 
             bool isParsed = AgeRestriction.TryParse(command,true, out ageRestriction);
@@ -67,6 +56,38 @@
 
 
             return string.Join(Environment.NewLine, bookTitles);
+        }
+
+        public static string GetGoldenBooks(BookShopContext context)
+        {
+            //TASK-02-Golden Books
+            //Return in a single string title of the golden edition books that have less than 5000 copies,
+            //each on a new line. Order them by book id ascending.
+            //Call the GetGoldenBooks(BookShopContext context) method in your Main() and print the returned string to the console.
+
+
+            var goldenBooks = context
+                .Books
+                .Where(b => b.Copies < 5000 && b.EditionType == EditionType.Gold)
+                .OrderBy(b => b.BookId)
+                .Select(b => b.Title)
+                .ToList();
+
+
+            return String.Join(Environment.NewLine, goldenBooks);
+        }
+
+        public static string GetBooksByPrice(BookShopContext context)
+        {
+            //TASK-03-Book by Price
+            //Return in a single string all titles and prices of books with a price higher than 40,
+            //each on a new row in the format given below. Order them by price descending.
+
+
+
+
+
+            return "";
         }
     }
 }
