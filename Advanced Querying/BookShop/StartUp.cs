@@ -11,6 +11,14 @@
     {
         public static void Main()
         {
+            //TASK-01-Age Restriction:
+            //Return in a single string all book titles, each on a new line, that have an age restriction, equal to 
+            //the given command. Order the titles alphabetically.
+            //Read input from the console in your main method and call your method with the necessary arguments.
+            //Print the returned string to the console. Ignore the casing of the input.
+            //Use method public static string GetBooksByAgeRestriction(BookShopContext context, string command)
+
+
             using var db = new BookShopContext();
             DbInitializer.ResetDatabase(db);
 
