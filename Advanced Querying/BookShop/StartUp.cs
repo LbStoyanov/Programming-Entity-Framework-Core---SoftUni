@@ -24,21 +24,28 @@
             using var db = new BookShopContext();
             //DbInitializer.ResetDatabase(db);
 
-            string command = Console.ReadLine();
-            var result = GetBooksByAgeRestriction(db, command);
+            //string command = Console.ReadLine();
+            //var result = GetBooksByAgeRestriction(db, command);
 
 
-            //var result = GetGoldenBooks(db);
+            var result = GetGoldenBooks(db);
 
             Console.WriteLine(result);
         }
 
         public static string GetGoldenBooks(BookShopContext context)
         {
-            StringBuilder result = new StringBuilder();
+            //StringBuilder result = new StringBuilder();
+
+            var goldenBooks = context
+                .Books
+                .Where(b => b.Copies < 5000 && b.EditionType == EditionType.Gold)
+                .OrderBy(b => b.BookId)
+                .Select(b=>b.Title)              
+                .ToList();
            
 
-            return result.ToString().TrimEnd();
+            return String.Join(Environment.NewLine,goldenBooks);
         }
 
         public static string GetBooksByAgeRestriction(BookShopContext context, string command)
