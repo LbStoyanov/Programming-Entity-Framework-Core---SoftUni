@@ -5,6 +5,7 @@
     using Initializer;
     using Microsoft.EntityFrameworkCore;
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
@@ -29,9 +30,11 @@
             //int year = int.Parse(Console.ReadLine());
             //var result = GetBooksNotReleasedIn(db,year);
 
+            //string input = Console.ReadLine();
+            //var result = GetBooksByCategory(db, input);
+
             string input = Console.ReadLine();
-            
-            var result = GetBooksByCategory(db, input);
+            var result = GetBooksReleasedBefore(db, input);
 
             Console.WriteLine(result);
         }
@@ -132,6 +135,7 @@
             return string.Join(Environment.NewLine, books);
         }
 
+        //NOT WORKING!!!
         public static string GetBooksByCategory(BookShopContext context, string input)
         {
             //TASK-06-Book Titles by Category
@@ -151,6 +155,33 @@
 
 
             return string.Join(Environment.NewLine,books);
+        }
+
+        public static string GetBooksReleasedBefore(BookShopContext context, string date)
+        {
+            StringBuilder result = new StringBuilder();
+            DateTime reversedDate = DateTime.ParseExact(date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+
+            var books = context
+                .Books
+                .Where(b => b.ReleaseDate < reversedDate)
+                .OrderByDescending(b => b.ReleaseDate)
+                .Select(b => new
+                {
+                    BookTtile = b.Title,
+                    BookEdition = b.EditionType,
+                    BookPrice = b.Price
+                })
+                .ToArray();
+
+            foreach (var book in books)
+            {
+                result.AppendLine($"{book.BookTtile} - {book.BookEdition} - ${book.BookPrice:f2}");
+            }
+
+            return result.ToString().TrimEnd();
+
+            
         }
     }
 }
