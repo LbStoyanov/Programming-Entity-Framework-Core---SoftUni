@@ -21,8 +21,9 @@
             //string command = Console.ReadLine();
             //var result = GetBooksByAgeRestriction(db, command);
 
+            //var result = GetGoldenBooks(db);
 
-            var result = GetGoldenBooks(db);
+            var result = GetBooksByPrice(db);
 
             Console.WriteLine(result);
         }
@@ -83,11 +84,27 @@
             //Return in a single string all titles and prices of books with a price higher than 40,
             //each on a new row in the format given below. Order them by price descending.
 
+            StringBuilder result = new StringBuilder();
+
+            var books = context
+                .Books
+                .Where(b => b.Price > 40)
+                .Select(b => new
+                {
+                    BookTitle = b.Title,
+                    BookPrice = b.Price
+                })
+                .OrderByDescending(b => b.BookPrice)
+                .ToList();
+
+            foreach (var book in books)
+            {
+                result.AppendLine($"{book.BookTitle} - ${book.BookPrice:f2}");
+            }
 
 
 
-
-            return "";
+            return result.ToString().TrimEnd();
         }
     }
 }
