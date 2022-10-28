@@ -33,8 +33,14 @@
             //string input = Console.ReadLine();
             //var result = GetBooksByCategory(db, input);
 
+            //string input = Console.ReadLine();
+            //var result = GetBooksReleasedBefore(db, input);
+
+            //string input = Console.ReadLine();
+            //var result = GetAuthorNamesEndingIn(db, input);
+
             string input = Console.ReadLine();
-            var result = GetBooksReleasedBefore(db, input);
+            var result = GetBookTitlesContaining(db, input);
 
             Console.WriteLine(result);
         }
@@ -188,6 +194,39 @@
             return result.ToString().TrimEnd();
 
             
+        }
+
+        public static string GetAuthorNamesEndingIn(BookShopContext context, string input)
+        {
+            //TASK-07-Author Search
+            //Return the full names of authors, whose first name ends with a given string.
+            //Return all names in a single string, each on a new row ordered alphabetically.
+
+            var authorNames = context
+                .Authors
+                .Where(a => a.FirstName.EndsWith(input))
+                .OrderBy(a => a.FirstName).ThenBy(a => a.LastName)
+                .Select(a => $"{a.FirstName} {a.LastName}")
+                .ToArray();
+                
+
+
+            return string.Join(Environment.NewLine,authorNames);
+        }
+
+        public static string GetBookTitlesContaining(BookShopContext context, string input)
+        {
+            //TASK-08-Book Search
+            //Return the titles of the book, which contain a given string. Ignore casing.
+            //Return all titles in a single string, each on a new row ordered alphabetically.
+
+            var books = context
+                .Books.Where(b => b.Title.ToLower().Contains(input.ToLower()))
+                .Select(x => x.Title)
+                .OrderBy(b => b)
+                .ToArray();
+
+            return string.Join("\n",books);
         }
     }
 }
