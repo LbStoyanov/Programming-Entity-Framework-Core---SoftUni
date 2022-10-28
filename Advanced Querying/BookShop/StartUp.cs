@@ -138,7 +138,7 @@
         //NOT WORKING!!!
         public static string GetBooksByCategory(BookShopContext context, string input)
         {
-            //TASK-06-Book Titles by Category
+            //TASK-05-Book Titles by Category
             //Return in a single string the titles of books by a given list of categories.
             //The list of categories will be given in a single line separated by one or more spaces.
             //Ignore casing. Order by title alphabetically.
@@ -159,6 +159,12 @@
 
         public static string GetBooksReleasedBefore(BookShopContext context, string date)
         {
+
+            //TASK-06-Released Before Date
+            //Return the title, edition type and price of all books that are released before a given date.
+            //The date will be a string in the format dd-MM-yyyy.
+            //Return all of the rows in a single string, ordered by release date descending.
+
             StringBuilder result = new StringBuilder();
             DateTime reversedDate = DateTime.ParseExact(date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
 
