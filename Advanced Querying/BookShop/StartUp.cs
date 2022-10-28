@@ -7,6 +7,7 @@
     using System;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
 
     public class StartUp
     {
@@ -23,7 +24,14 @@
 
             //var result = GetGoldenBooks(db);
 
-            var result = GetBooksByPrice(db);
+            //var result = GetBooksByPrice(db);
+
+            //int year = int.Parse(Console.ReadLine());
+            //var result = GetBooksNotReleasedIn(db,year);
+
+            string input = Console.ReadLine();
+            
+            var result = GetBooksByCategory(db, input);
 
             Console.WriteLine(result);
         }
@@ -105,6 +113,44 @@
 
 
             return result.ToString().TrimEnd();
+        }
+
+        public static string GetBooksNotReleasedIn(BookShopContext context, int year)
+        {
+            //TASK-04-Not Released In
+            //Return in a single string with all titles of books that are NOT released in a given year.
+            //Order them by book id ascending.
+
+            var books = context
+                .Books
+                .Where(b => b.ReleaseDate.Value.Year != year)
+                .OrderBy(b => b.BookId)
+                .Select(b => b.Title)
+                .ToArray();
+
+
+            return string.Join(Environment.NewLine, books);
+        }
+
+        public static string GetBooksByCategory(BookShopContext context, string input)
+        {
+            //TASK-06-Book Titles by Category
+            //Return in a single string the titles of books by a given list of categories.
+            //The list of categories will be given in a single line separated by one or more spaces.
+            //Ignore casing. Order by title alphabetically.
+
+            var splitted = input.ToLower()
+                .Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+            var books = context
+                .Books
+                .Where(b => b.BookCategories.Select(c => c.Category.Name.ToLower()).Intersect(splitted).Any())
+                .Select(b => b.Title)
+                .OrderBy(t => t)
+                .ToList();
+
+
+            return string.Join(Environment.NewLine,books);
         }
     }
 }
