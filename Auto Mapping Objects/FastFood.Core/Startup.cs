@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 namespace FastFood.Core
 {
     using Data;
+    using FastFood.Core.MappingConfiguration;
     using Microsoft.EntityFrameworkCore;
 
     public class Startup
@@ -29,6 +30,11 @@ namespace FastFood.Core
             services.AddDbContext<FastFoodContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.AddProfile<FastFoodProfile>();
+            });
 
             services.AddControllersWithViews();
         }

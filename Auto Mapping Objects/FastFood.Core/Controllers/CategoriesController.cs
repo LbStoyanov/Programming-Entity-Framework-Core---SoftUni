@@ -25,7 +25,12 @@
         [HttpPost]
         public IActionResult Create(CreateCategoryInputModel model)
         {
-            throw new NotImplementedException();
+            if (!ModelState.IsValid)
+            {
+                return this.RedirectToAction("Create", "Categories");
+            }
+
+            return this.RedirectToAction("Index", "Home");
         }
 
         public IActionResult All()
