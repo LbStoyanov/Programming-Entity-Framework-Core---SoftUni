@@ -60,6 +60,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FastFood.Data\FastFood.Data.csproj" />
+    <ProjectReference Include="..\FastFood.Services.Models\FastFood.Services.Models.csproj" />
+    <ProjectReference Include="..\FastFood.Services\FastFood.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using FastFood.Models;
+    using FastFood.Services.Models.Categories;
     using ViewModels.Positions;
 
     public class FastFoodProfile : Profile
@@ -14,6 +15,8 @@
 
             this.CreateMap<Position, PositionsAllViewModel>()
                 .ForMember(x => x.Name, y => y.MapFrom(s => s.Name));
+
+            this.CreateMap<CreateCategoryDTO, Category>();
         }
     }
 }
