@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FastFood.Data;
+using FastFood.Models;
 using FastFood.Services.Interfaces;
 using FastFood.Services.Models.Categories;
 
@@ -15,9 +16,12 @@ namespace FastFood.Services
             this.dbContext = dbContext;
             this.mapper = mapper;
         }
-        public void AddCategory(CreateCategoryDTO categoryDTO)
+        public async void AddCategory(CreateCategoryDTO categoryDTO)
         {
-            throw new NotImplementedException();
+            Category category = this.mapper.Map<Category>(categoryDTO);
+
+            dbContext.Categories.Add(category);
+            await dbContext.SaveChangesAsync();
         }
 
         public ICollection<ListCategoryDTO> GetAll()
