@@ -10,6 +10,7 @@ using ProductShop.DTOs.Categories;
 using ProductShop.DTOs.CategoryProduct;
 using ProductShop.DTOs.Product;
 using ProductShop.DTOs.Products;
+using ProductShop.DTOs.User;
 using ProductShop.DTOs.Users;
 using ProductShop.Models;
 
@@ -52,11 +53,16 @@ namespace ProductShop
             //Console.WriteLine(output);
 
 
-            
 
-            string json = GetProductsInRange(dbContext);
 
-            File.WriteAllText("../../../ExportResults/products-in-range.json",json);
+            //string json = GetProductsInRange(dbContext);
+
+            //File.WriteAllText("../../../ExportResults/products-in-range.json", json);
+
+
+            string json = GetSoldProducts(dbContext);
+
+            File.WriteAllText("../../../ExportResults/user-sold-products.json", json);
 
         }
 
@@ -163,6 +169,23 @@ namespace ProductShop
 
             return json;
         }
+
+        //Task 06 - Export Sold Products
+        public static string GetSoldProducts(ProductShopContext context)
+        {
+            var usersWithSoldProducts = context
+                .Users
+                .Where(u => u.ProductsSold.Any(p => p.BuyerId.HasValue))
+                .OrderBy(u => u.LastName)
+                .ThenBy(u => u.FirstName)
+                .ProjectTo<ExportUsersWithSoldProductsDto>()
+                .ToArray();
+
+            string json = JsonConvert.SerializeObject(usersWithSoldProducts,Formatting.Indented);
+
+            return json;
+        }
+
 
     }
 }
