@@ -5,6 +5,7 @@ using System.Linq;
 using AutoMapper;
 using Newtonsoft.Json;
 using ProductShop.Data;
+using ProductShop.DTOs.Products;
 using ProductShop.DTOs.Users;
 using ProductShop.Models;
 
@@ -12,26 +13,32 @@ namespace ProductShop
 {
     public class StartUp
     {
-        private static IMapper mapper;
+        //private static IMapper mapper;
         public static void Main(string[] args)
         {
-            mapper = new Mapper(new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<ProductShopProfile>();
-            }));
+            //mapper = new Mapper(new MapperConfiguration(cfg =>
+            //{
+            //    cfg.AddProfile<ProductShopProfile>();
+            //}));
+
+            Mapper.Initialize(cfg => cfg.AddProfile(typeof(ProductShopProfile)));
+
             ProductShopContext dbContext = new ProductShopContext();
             //dbContext.Database.EnsureDeleted();
             //dbContext.Database.EnsureCreated();
 
-            string inputJson = File.ReadAllText("../../../Datasets/users.json");
+            //string inputJson = File.ReadAllText("../../../Datasets/users.json");
+            //string output = ImportUsers(dbContext, inputJson);
+            //Console.WriteLine(output);
 
-            string output = ImportUsers(dbContext, inputJson);
+            string inputJson = File.ReadAllText("../../../Datasets/products.json");
+            string output = ImportProducts(dbContext, inputJson);
             Console.WriteLine(output);
 
 
         }
 
-
+        //Problem 01 - Import users
         public static string ImportUsers(ProductShopContext context, string inputJson)
         {
             ImportUserDto[] userDtos = JsonConvert.DeserializeObject<ImportUserDto[]>(inputJson);
@@ -40,7 +47,7 @@ namespace ProductShop
 
             foreach (ImportUserDto dto in userDtos)
             {
-                User user = mapper.Map<User>(dto);
+                User user = Mapper.Map<User>(dto);
                 users.Add(user);
             }
 
@@ -48,6 +55,25 @@ namespace ProductShop
             context.SaveChanges();
 
             return $"Successfully imported {users.Count}";
+        }
+
+        //Task 02 - Import products
+        public static string ImportProducts(ProductShopContext context, string inputJson)
+        {
+            ImportProductDto[] productsDtos = JsonConvert.DeserializeObject<ImportProductDto[]>(inputJson);
+
+            ICollection<Product> validProducts = new List<Product>();
+
+            foreach (var productDto in productsDtos)
+            {
+                Product product = Mapper.Map<Product>(productDto);
+                validProducts.Add(product);
+            }
+
+            context.AddRange(validProducts);
+            context.SaveChanges();
+
+            return $"Successfully imported {validProducts.Count}";
         }
 
     }
