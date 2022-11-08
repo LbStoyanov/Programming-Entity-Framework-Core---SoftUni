@@ -5,6 +5,7 @@ using System.Linq;
 using AutoMapper;
 using Newtonsoft.Json;
 using ProductShop.Data;
+using ProductShop.DTOs.Categories;
 using ProductShop.DTOs.Products;
 using ProductShop.DTOs.Users;
 using ProductShop.Models;
@@ -31,8 +32,12 @@ namespace ProductShop
             //string output = ImportUsers(dbContext, inputJson);
             //Console.WriteLine(output);
 
-            string inputJson = File.ReadAllText("../../../Datasets/products.json");
-            string output = ImportProducts(dbContext, inputJson);
+            //string inputJson = File.ReadAllText("../../../Datasets/products.json");
+            //string output = ImportProducts(dbContext, inputJson);
+            //Console.WriteLine(output);
+
+            string inputJson = File.ReadAllText("../../../Datasets/categories.json");
+            string output = ImportCategories(dbContext, inputJson);
             Console.WriteLine(output);
 
 
@@ -74,6 +79,30 @@ namespace ProductShop
             context.SaveChanges();
 
             return $"Successfully imported {validProducts.Count}";
+        }
+
+        //Task 03 - Import categories
+        public static string ImportCategories(ProductShopContext context, string inputJson)
+        {
+            ImportCategoryDto[] categoriesDtos = JsonConvert.DeserializeObject<ImportCategoryDto[]>(inputJson);
+
+            IList<Category> validCategories = new List<Category>();
+
+            foreach (var categoryDto in categoriesDtos)
+            {
+                if (categoryDto.Name == null)
+                {
+                    continue;
+                }
+                Category category = Mapper.Map<Category>(categoryDto);
+
+                validCategories.Add(category);
+            }
+
+            context.AddRange(validCategories);
+            context.SaveChanges();
+
+            return $"Successfully imported {validCategories.Count}";
         }
 
     }

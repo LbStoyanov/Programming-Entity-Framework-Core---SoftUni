@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ProductShop.DTOs.Categories;
 using ProductShop.DTOs.Products;
 using ProductShop.DTOs.Users;
 using ProductShop.Models;
@@ -11,6 +12,7 @@ namespace ProductShop
         {
             this.CreateMap<ImportUserDto, User>();
             this.CreateMap<ImportProductDto, Product>();
+            this.CreateMap<ImportCategoryDto, Category>();
         }
     }
 }
