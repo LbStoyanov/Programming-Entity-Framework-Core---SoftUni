@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Newtonsoft.Json;
 using ProductShop.Data;
 using ProductShop.DTOs.Categories;
+using ProductShop.DTOs.CategoryProduct;
+using ProductShop.DTOs.Product;
 using ProductShop.DTOs.Products;
 using ProductShop.DTOs.Users;
 using ProductShop.Models;
@@ -17,6 +20,14 @@ namespace ProductShop
         //private static IMapper mapper;
         public static void Main(string[] args)
         {
+            //STEPS WHEN MAKE IMPORT
+            //1.Create DTOs folder
+            //2.Create DTO class for the respectiv json(Check for validations too!!!)
+            //3.Create a map in the profile class
+            //4.Initialize the mappper by giving the config
+            //Deserialization => From json to dto
+            //Serialization => From dto to json
+
             //mapper = new Mapper(new MapperConfiguration(cfg =>
             //{
             //    cfg.AddProfile<ProductShopProfile>();
@@ -36,10 +47,16 @@ namespace ProductShop
             //string output = ImportProducts(dbContext, inputJson);
             //Console.WriteLine(output);
 
-            string inputJson = File.ReadAllText("../../../Datasets/categories.json");
-            string output = ImportCategories(dbContext, inputJson);
-            Console.WriteLine(output);
+            //string inputJson = File.ReadAllText("../../../Datasets/categories.json");
+            //string output = ImportCategories(dbContext, inputJson);
+            //Console.WriteLine(output);
 
+
+            
+
+            string json = GetProductsInRange(dbContext);
+
+            File.WriteAllText("../../../ExportResults/products-in-range.json",json);
 
         }
 
@@ -103,6 +120,48 @@ namespace ProductShop
             context.SaveChanges();
 
             return $"Successfully imported {validCategories.Count}";
+        }
+
+        //Task 04 - Import Categories and Products
+        public static string ImportCategoryProducts(ProductShopContext context, string inputJson)
+        {
+            ImportCategoryProductDto[] categoryProductDtos = JsonConvert.DeserializeObject<ImportCategoryProductDto[]>(inputJson);
+
+            ICollection<CategoryProduct> categoryProducts = new List<CategoryProduct>();
+
+            foreach (var dto in categoryProductDtos)
+            {
+                CategoryProduct categoryProduct = Mapper.Map<CategoryProduct>(dto);
+                categoryProducts.Add(categoryProduct);
+            }
+
+            context.AddRange(categoryProducts);
+            context.SaveChanges();
+
+            return $"Successfully imported {categoryProducts.Count}";
+        }
+
+        //Task 05 - Export Products in Range
+        public static string GetProductsInRange(ProductShopContext context)
+        {
+            var products = context.Products
+                .Where(p => p.Price >= 500 && p.Price <= 1000)
+                .OrderBy(p => p.Price)
+
+                //Manual mapping!!
+                //.Select(p => new
+                //{
+                //    name = p.Name,
+                //    price = p.Price,
+                //    seller = $"{p.Seller.FirstName} {p.Seller.LastName}"
+                //})
+                .ProjectTo<ExportProductsInRangeDto>()
+                .ToArray();
+
+
+            string json = JsonConvert.SerializeObject(products,Formatting.Indented);
+
+            return json;
         }
 
     }
