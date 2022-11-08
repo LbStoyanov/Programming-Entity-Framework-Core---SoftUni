@@ -14,5 +14,14 @@ namespace ProductShop
         {
 
         }
+
+
+        public static string ImportUsers(ProductShopContext context, string inputJson)
+        {
+
+
+            return "";
+        }
+
     }
 }
