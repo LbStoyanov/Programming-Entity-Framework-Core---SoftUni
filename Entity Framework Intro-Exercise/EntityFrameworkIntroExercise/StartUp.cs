@@ -29,7 +29,7 @@ namespace SoftUni
             Console.WriteLine(result);
         }
 
-        private static string GetEmployeesByFirstNameStartingWithSa(SoftUniContext context)
+        public static string GetEmployeesByFirstNameStartingWithSa(SoftUniContext context)
         {
             StringBuilder result = new StringBuilder();
 
