@@ -18,14 +18,42 @@ namespace SoftUni
             //string result = GetEmployeesWithSalaryOver50000(context);
             //string result = AddNewAddressToEmployee(context);
             //string result = GetEmployeesFromResearchAndDevelopment(context);
-            string result = GetEmployeesInPeriod(context);         
+            //string result = GetEmployeesInPeriod(context);         
             //string result = GetAddressesByTown(context);
             //string result = GetEmployee147(context);
             //string result = GetDepartmentsWithMoreThan5Employees(context);
             //string result = GetLatestProjects(context);
             //string result = IncreaseSalaries(context);
+            string result = GetEmployeesByFirstNameStartingWithSa(context);
 
             Console.WriteLine(result);
+        }
+
+        private static string GetEmployeesByFirstNameStartingWithSa(SoftUniContext context)
+        {
+            StringBuilder result = new StringBuilder();
+
+            var allEmployees = context
+                .Employees
+                .Where(e => e.FirstName.StartsWith("Sa"))
+                .Select(e => new
+                {
+                    e.FirstName,
+                    e.LastName,
+                    e.JobTitle,
+                    e.Salary
+                })
+                .OrderBy(x => x.FirstName)
+                .ThenBy(x => x.LastName)
+                .ToList();
+
+
+            foreach (var emp in allEmployees)
+            {
+                result.AppendLine($"{emp.FirstName} {emp.LastName} - {emp.JobTitle} - (${emp.Salary:f2})");
+            }
+
+            return result.ToString().TrimEnd();   
         }
 
         public static string GetEmployeesFullInformation(SoftUniContext context)
@@ -143,7 +171,6 @@ namespace SoftUni
 
             var employeesWithProjects = context
                 .Employees
-                //.Where(e => e.EmployeesProjects.Any(ep => ep.Project.StartDate.Year >= 2001 && ep.Project.StartDate.Year <= 2003))
                 .Select(e => new
                 {
                     e.FirstName,
@@ -316,7 +343,7 @@ namespace SoftUni
                 .Where(ed => ed.Department.Name == "Engineering"
                              || ed.Department.Name == "Tool Design"
                              || ed.Department.Name == "Marketing"
-                             || ed.Department.Name == "Information Services ")
+                             || ed.Department.Name == "Information Services")
                 .OrderBy(e => e.FirstName)
                 .ThenBy(e => e.LastName)
                 .ToList();
@@ -324,14 +351,14 @@ namespace SoftUni
 
             foreach (var employee in searchedEmployees)
             {
-                employee.Salary += employee.Salary * 0.12m;
+                employee.Salary *= 1.12m;
               
                 output.AppendLine($"{employee.FirstName} {employee.LastName} (${employee.Salary:f2})");
                 
             }
 
-            
-            
+            context.SaveChanges();
+
             return output.ToString().TrimEnd();
         }
 
