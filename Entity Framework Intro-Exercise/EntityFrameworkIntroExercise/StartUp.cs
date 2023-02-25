@@ -14,11 +14,11 @@ namespace SoftUni
         {
             using SoftUniContext context = new SoftUniContext();
 
-            string result = GetEmployeesFullInformation(context);
+            //string result = GetEmployeesFullInformation(context);
             //string result = GetEmployeesWithSalaryOver50000(context);
             //string result = AddNewAddressToEmployee(context);
             //string result = GetEmployeesFromResearchAndDevelopment(context);
-            //string result = GetEmployeesInPeriod(context);
+            string result = GetEmployeesInPeriod(context);         
             //string result = GetAddressesByTown(context);
             //string result = GetEmployee147(context);
             //string result = GetDepartmentsWithMoreThan5Employees(context);
@@ -143,14 +143,16 @@ namespace SoftUni
 
             var employeesWithProjects = context
                 .Employees
-                .Where(e => e.EmployeesProjects.Any(ep => ep.Project.StartDate.Year >= 2001 && ep.Project.StartDate.Year <= 2003))
+                //.Where(e => e.EmployeesProjects.Any(ep => ep.Project.StartDate.Year >= 2001 && ep.Project.StartDate.Year <= 2003))
                 .Select(e => new
                 {
                     e.FirstName,
                     e.LastName,
                     ManagerFirstName = e.Manager.FirstName,
                     ManagerLastName = e.Manager.LastName,
-                    Projects = e.EmployeesProjects.Select(ep => new
+                    Projects = e.EmployeesProjects
+                    .Where(ep => ep.Project.StartDate.Year >= 2001 && ep.Project.StartDate.Year <= 2003)
+                    .Select(ep => new
                     {
                         ProjectName = ep.Project.Name,
                         ProjectStartDate = ep.Project.StartDate,
