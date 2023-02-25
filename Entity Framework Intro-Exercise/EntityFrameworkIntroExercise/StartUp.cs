@@ -24,9 +24,15 @@ namespace SoftUni
             //string result = GetDepartmentsWithMoreThan5Employees(context);
             //string result = GetLatestProjects(context);
             //string result = IncreaseSalaries(context);
-            string result = GetEmployeesByFirstNameStartingWithSa(context);
+            //string result = GetEmployeesByFirstNameStartingWithSa(context);
+            string result = DeleteProjectById(context);
 
             Console.WriteLine(result);
+        }
+
+        public static string DeleteProjectById(SoftUniContext context)
+        {
+            throw new NotImplementedException();
         }
 
         public static string GetEmployeesByFirstNameStartingWithSa(SoftUniContext context)
