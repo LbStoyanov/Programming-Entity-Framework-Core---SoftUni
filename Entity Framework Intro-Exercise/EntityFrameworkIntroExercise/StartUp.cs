@@ -14,7 +14,7 @@ namespace SoftUni
         {
             using SoftUniContext context = new SoftUniContext();
 
-            //string result = GetEmployeesFullInformation(context);
+            string result = GetEmployeesFullInformation(context);
             //string result = GetEmployeesWithSalaryOver50000(context);
             //string result = AddNewAddressToEmployee(context);
             //string result = GetEmployeesFromResearchAndDevelopment(context);
@@ -23,7 +23,7 @@ namespace SoftUni
             //string result = GetEmployee147(context);
             //string result = GetDepartmentsWithMoreThan5Employees(context);
             //string result = GetLatestProjects(context);
-            string result = IncreaseSalaries(context);
+            //string result = IncreaseSalaries(context);
 
             Console.WriteLine(result);
         }
