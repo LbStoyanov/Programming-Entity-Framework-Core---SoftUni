@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using P03_FootballBetting.Data.Models;
+using P02_FootballBetting.Data.Models;
 using System;
 
-namespace P03_FootballBetting.Data
+namespace P02_FootballBetting.Data
 {
     //testing
     public class FootballBettingContext : DbContext

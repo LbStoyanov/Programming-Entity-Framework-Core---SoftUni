@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading;
-using P03_FootballBetting.Data.Common;
+using P02_FootballBetting.Data.Common;
 
-namespace P03_FootballBetting.Data.Models
+namespace P02_FootballBetting.Data.Models
 {
     public class Color
     {

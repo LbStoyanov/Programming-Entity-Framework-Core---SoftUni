@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text;
-using P03_FootballBetting.Data.Common;
+using P02_FootballBetting.Data.Common;
 
-namespace P03_FootballBetting.Data.Models
+namespace P02_FootballBetting.Data.Models
 {
     public class Country
     {

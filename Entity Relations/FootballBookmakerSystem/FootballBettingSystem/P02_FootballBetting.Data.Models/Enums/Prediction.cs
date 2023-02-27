@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace P03_FootballBetting.Data.Models.Enums
+namespace P02_FootballBetting.Data.Models.Enums
 {
     public enum Prediction
     {

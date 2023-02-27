@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace P03_FootballBetting.Data.Common
+namespace P02_FootballBetting.Data.Common
 {
     public static class GlobalConstants
     {

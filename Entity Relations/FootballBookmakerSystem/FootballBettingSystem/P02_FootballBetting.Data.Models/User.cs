@@ -1,10 +1,10 @@
-﻿using P03_FootballBetting.Data.Common;
+﻿using P02_FootballBetting.Data.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace P03_FootballBetting.Data.Models
+namespace P02_FootballBetting.Data.Models
 {
     public class User
     {

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\P03_FootballBetting.Data.Common\P03_FootballBetting.Data.Common.csproj" />
+    <ProjectReference Include="..\P03_FootballBetting.Data.Common\P02_FootballBetting.Data.Common.csproj" />
   </ItemGroup>
 
 </Project>

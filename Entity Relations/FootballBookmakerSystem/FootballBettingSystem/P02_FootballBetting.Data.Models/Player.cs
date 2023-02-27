@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using P03_FootballBetting.Data.Common;
+using P02_FootballBetting.Data.Common;
 
-namespace P03_FootballBetting.Data.Models
+namespace P02_FootballBetting.Data.Models
 {
     public class Player
     {

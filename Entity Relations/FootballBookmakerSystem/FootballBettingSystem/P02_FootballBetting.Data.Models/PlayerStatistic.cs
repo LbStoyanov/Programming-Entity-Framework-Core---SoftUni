@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace P03_FootballBetting.Data.Models
+namespace P02_FootballBetting.Data.Models
 {
     //Mapping class
     public class PlayerStatistic
