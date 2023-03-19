@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace CarDealer.DTOs.Import
 {
-    internal class ImportSupplierDto
+    [XmlType("Supplier")]
+    public class ImportSupplierDto
     {
+        [XmlElement("name")]
+        public string Name { get; set; } = null!;
+
+        [XmlElement("IsImporter")]
+        public bool IsImporter { get; set; }
     }
 }
