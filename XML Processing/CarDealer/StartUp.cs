@@ -1,5 +1,6 @@
 ﻿using CarDealer.Data;
 using CarDealer.DTOs.Import;
+using CarDealer.Utilities;
 using System.Xml.Serialization;
 
 namespace CarDealer
@@ -13,13 +14,9 @@ namespace CarDealer
 
         public static string ImportSuppliers(CarDealerContext context, string inputXml)
         {
-            XmlRootAttribute xmlRoot = new XmlRootAttribute("Suppliers");
+            XmlHelper xmlHelper = new XmlHelper();
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ImportSupplierDto[]), xmlRoot);
-
-            StreamReader sr = new StreamReader(inputXml);
-
-            ImportSupplierDto[] supplierDtos = (ImportSupplierDto[])xmlSerializer.Deserialize(sr);
+            ImportSupplierDto[] supplierDtos = xmlHelper.Deserialize<ImportSupplierDto[]>(inputXml, "Suppliers");
 
 
 
