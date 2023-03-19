@@ -26,11 +26,11 @@ namespace CarDealer
 
             XmlHelper xmlHelper = new XmlHelper();
 
-            ImportSupplierDto[] supplierDtos = xmlHelper.Deserialize<ImportSupplierDto[]>(inputXml, "Suppliers");
+            ImportSupplierDto[] deserializedDtos = xmlHelper.Deserialize<ImportSupplierDto[]>(inputXml, "Suppliers");
 
             ICollection<Supplier> validSuppliers = new HashSet<Supplier>();
 
-            foreach (var supplierDto in supplierDtos)
+            foreach (var supplierDto in deserializedDtos)
             {
                 if (String.IsNullOrEmpty(supplierDto.Name))
                 {
