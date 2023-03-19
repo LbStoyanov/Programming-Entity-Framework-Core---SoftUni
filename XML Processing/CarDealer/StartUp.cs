@@ -10,11 +10,11 @@ namespace CarDealer
             
         }
 
-        //public static string ImportSuppliers(CarDealerContext context, string inputXml)
-        //{
+        public static string ImportSuppliers(CarDealerContext context, string inputXml)
+        {
 
 
-        //    return "";
-        //}
+            return "";
+        }
     }
 }
