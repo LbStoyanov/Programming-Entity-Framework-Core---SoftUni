@@ -13,11 +13,21 @@ namespace CarDealer
         {
             CarDealerContext context = new CarDealerContext();
 
-            string inputXml = File.ReadAllText("../../../Datasets/suppliers.xml");
+            //string inputXml = File.ReadAllText("../../../Datasets/suppliers.xml");
+            //string result = ImportSuppliers(context, inputXml);
 
-            string result = ImportSuppliers(context, inputXml);
+            string inputXml = File.ReadAllText("../../../Datasets/parts.xml");
+            string result = ImportParts(context, inputXml);
 
             Console.WriteLine(result);
+        }
+
+        public static string ImportParts(CarDealerContext context, string inputXml)
+        {
+
+
+
+            return "";
         }
 
         public static string ImportSuppliers(CarDealerContext context, string inputXml)
