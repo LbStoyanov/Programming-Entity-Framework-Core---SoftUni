@@ -33,7 +33,14 @@ namespace CarDealer
 
             foreach (var partDto in deserializedParts)
             {
-                if (partDto.SupplierId == null)
+                if (String.IsNullOrEmpty(partDto.Name))
+                {
+                    continue;
+                }
+
+                if (!partDto.SupplierId.HasValue ||
+                    !context.Suppliers.Any(x => x.Id == partDto.SupplierId)
+                    )
                 {
                     continue;
                 }
