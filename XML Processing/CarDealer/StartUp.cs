@@ -27,9 +27,26 @@ namespace CarDealer
 
             IMapper mapper = InitializeAutoMapper();
             XmlHelper xmlHelper = new XmlHelper();
+            ImportPartsDto[] deserializedParts = xmlHelper.Deserialize<ImportPartsDto[]>(inputXml, "Parts");
 
+            ICollection<Part> validParts = new HashSet<Part>();
 
-            return $"Successfully imported {parts.Count}";
+            foreach (var partDto in deserializedParts)
+            {
+                if (partDto.SupplierId == null)
+                {
+                    continue;
+                }
+
+                Part part = mapper.Map<Part>(partDto);
+
+                validParts.Add(part);
+            }
+
+            context.AddRange(validParts);
+            context.SaveChanges();
+
+            return $"Successfully imported {validParts.Count}";
         }
 
         public static string ImportSuppliers(CarDealerContext context, string inputXml)
