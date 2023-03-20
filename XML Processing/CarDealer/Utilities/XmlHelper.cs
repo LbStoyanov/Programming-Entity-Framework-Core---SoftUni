@@ -16,7 +16,7 @@ namespace CarDealer.Utilities
 
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T), xmlRoot);
 
-            StringReader sr = new StringReader(inputXml);
+            using StringReader sr = new StringReader(inputXml);
 
             T supplierDtos = (T)xmlSerializer.Deserialize(sr);
 
@@ -29,7 +29,7 @@ namespace CarDealer.Utilities
 
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T[]), xmlRoot);
 
-            StringReader sr = new StringReader(inputXml);
+            using StringReader sr = new StringReader(inputXml);
 
             T[] supplierDtos = (T[])xmlSerializer.Deserialize(sr);
 

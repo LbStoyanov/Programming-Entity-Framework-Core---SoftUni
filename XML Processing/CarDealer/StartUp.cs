@@ -43,7 +43,7 @@ namespace CarDealer
                 validParts.Add(part);
             }
 
-            context.AddRange(validParts);
+            context.Parts.AddRange(validParts);
             context.SaveChanges();
 
             return $"Successfully imported {validParts.Count}";
