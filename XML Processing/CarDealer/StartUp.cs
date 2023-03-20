@@ -25,9 +25,11 @@ namespace CarDealer
         public static string ImportParts(CarDealerContext context, string inputXml)
         {
 
+            IMapper mapper = InitializeAutoMapper();
+            XmlHelper xmlHelper = new XmlHelper();
 
 
-            return "";
+            return $"Successfully imported {parts.Count}";
         }
 
         public static string ImportSuppliers(CarDealerContext context, string inputXml)
