@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Trucks.Common;
 using Trucks.Data.Models.Enums;
 
 namespace Trucks.Data.Models
@@ -19,12 +20,16 @@ namespace Trucks.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public string RegistrationNumber  { get; set; }
+
+        [MaxLength(ValidationConstatnts.RegistrationNumberLength)]
+        public string? RegistrationNumber { get; set; }
 
         [Required]
+        [MaxLength(ValidationConstatnts.VinNumberLength)]
         public string VinNumber { get; set; }
 
         [Required]
+        [MaxLength(ValidationConstatnts.)]
         public int TankCapacity  { get; set;}
 
         [Required]

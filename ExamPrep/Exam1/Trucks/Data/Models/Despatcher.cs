@@ -8,5 +8,6 @@ namespace Trucks.Data.Models
 {
     public class Despatcher
     {
+
     }
 }
