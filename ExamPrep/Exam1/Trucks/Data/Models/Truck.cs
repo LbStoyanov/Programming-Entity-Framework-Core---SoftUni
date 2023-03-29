@@ -28,11 +28,9 @@ namespace Trucks.Data.Models
         [MaxLength(ValidationConstatnts.VinNumberLength)]
         public string VinNumber { get; set; }
 
-        [Required]
-        [MaxLength(ValidationConstatnts.)]
+        
         public int TankCapacity  { get; set;}
 
-        [Required]
         public int CargoCapacity { get; set; }
 
         [Required]

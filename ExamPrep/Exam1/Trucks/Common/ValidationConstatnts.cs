@@ -18,5 +18,8 @@ namespace Trucks.Common
         //Client
         public const int ClientNameLength = 40;
         public const int NationalityLength = 40;
+
+        //Despatcher
+        public const int DespatcherNameLength = 40;
     }
 }
