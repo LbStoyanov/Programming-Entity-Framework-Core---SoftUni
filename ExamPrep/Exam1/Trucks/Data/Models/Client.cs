@@ -19,11 +19,11 @@ namespace Trucks.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(ValidationConstatnts.ClientNameLength)]
+        [MaxLength(ValidationConstatnts.ClientNameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(ValidationConstatnts.NationalityLength)]
+        [MaxLength(ValidationConstatnts.ClientNationalityMaxLength)]
         public string Nationality { get; set; }
 
         [Required]
