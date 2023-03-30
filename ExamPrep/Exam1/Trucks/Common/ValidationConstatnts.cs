@@ -11,9 +11,8 @@ namespace Trucks.Common
     {
         //Truck
         public const int RegistrationNumberLength = 8;
-
-        //VIN
         public const int VinNumberLength = 17;
+        public const string TruckRegistrationNumberRegex = @"[A-Z]{2}\d{4}[A-Z]{2}";
 
         //Client
         public const int ClientNameLength = 40;
