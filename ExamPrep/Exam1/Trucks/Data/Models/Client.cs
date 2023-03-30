@@ -12,7 +12,7 @@ namespace Trucks.Data.Models
     {
         public Client()
         {
-            this.ClientTrucks = new HashSet<ClientTruck>();
+            this.ClientsTrucks = new HashSet<ClientTruck>();
         }
 
         [Key]
@@ -30,6 +30,6 @@ namespace Trucks.Data.Models
         public string Type { get; set; }
 
 
-        public ICollection<ClientTruck> ClientTrucks { get; set; }
+        public ICollection<ClientTruck> ClientsTrucks { get; set; }
     }
 }

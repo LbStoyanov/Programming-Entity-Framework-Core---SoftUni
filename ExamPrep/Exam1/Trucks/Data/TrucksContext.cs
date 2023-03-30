@@ -31,7 +31,10 @@ namespace Trucks.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder
+            modelBuilder.Entity<ClientTruck>(e =>
+            {
+                e.HasKey(ct => new { ct.ClientId, ct.TruckId });
+            });
         }
     }
 }
