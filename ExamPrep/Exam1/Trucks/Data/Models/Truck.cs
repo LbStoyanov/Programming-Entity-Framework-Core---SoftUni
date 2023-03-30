@@ -14,7 +14,7 @@ namespace Trucks.Data.Models
     {
         public Truck()
         {
-            this.ClientTrucks = new HashSet<ClientTruck>();
+            this.ClientsTrucks = new HashSet<ClientTruck>();
         }
 
         [Key]
@@ -46,6 +46,6 @@ namespace Trucks.Data.Models
 
         public virtual Despatcher Despatcher { get; set; } = null!;
 
-        public ICollection<ClientTruck> ClientTrucks { get; set; }
+        public ICollection<ClientTruck> ClientsTrucks { get; set; }
     }
 }
