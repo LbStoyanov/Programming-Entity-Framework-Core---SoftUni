@@ -32,5 +32,7 @@ namespace Trucks.Common
 
         //Despatcher
         public const int DespatcherNameLength = 40;
+        public const int DespatcherNameMinLength = 2;
+        public const int DespatcherNameMaxLength = 40;
     }
 }

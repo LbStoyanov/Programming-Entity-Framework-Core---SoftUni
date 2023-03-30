@@ -1,4 +1,6 @@
-﻿using System.Xml.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
+using Trucks.Common;
 
 namespace Trucks.DataProcessor.ImportDto
 {
@@ -6,9 +8,13 @@ namespace Trucks.DataProcessor.ImportDto
     public class ImportDespatcherDto
     {
         [XmlElement("Name")]
+        [Required]
+        [MinLength(ValidationConstatnts.DespatcherNameMinLength)]
+        [MaxLength(ValidationConstatnts.DespatcherNameMaxLength)]
         public string Name { get; set; } = null!;
 
         [XmlElement("Position")]
+        [Required]
         public string Position { get; set; } = null!;
 
         [XmlArray("Trucks")]
