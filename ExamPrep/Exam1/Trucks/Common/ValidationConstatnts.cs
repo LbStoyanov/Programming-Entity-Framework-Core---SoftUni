@@ -27,8 +27,14 @@ namespace Trucks.Common
         public const int MakeTypeMax = 4;
 
         //Client
-        public const int ClientNameLength = 40;
-        public const int NationalityLength = 40;
+        public const int ClientNameMinLength = 3;
+        public const int ClientNameMaxLength = 40;
+
+        public const int ClientNationalityMinLength = 2;
+        public const int ClientNationalityMaxLength = 40;
+
+        //public const int ClientNameLength = 40;
+        //public const int NationalityLength = 40;
 
         //Despatcher
         public const int DespatcherNameLength = 40;

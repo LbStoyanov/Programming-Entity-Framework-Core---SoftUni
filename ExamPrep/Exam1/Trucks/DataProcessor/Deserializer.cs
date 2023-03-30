@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Newtonsoft.Json;
 using Trucks.Data.Models;
 using Trucks.Data.Models.Enums;
 using Trucks.DataProcessor.ImportDto;
@@ -75,7 +76,8 @@ namespace Trucks.DataProcessor
                 };
 
                 validDespatchers.Add(despatcher);
-                output.AppendLine(string.Format($"Successfully imported despatcher – {despatcher.Name} with {validTrucks.Count} trucks."))
+                output.AppendLine(string.Format(
+                    $"Successfully imported despatcher – {despatcher.Name} with {validTrucks.Count} trucks."));
             }
 
             context.Despatchers.AddRange(validDespatchers);
@@ -86,7 +88,64 @@ namespace Trucks.DataProcessor
         }
         public static string ImportClient(TrucksContext context, string jsonString)
         {
-            throw new NotImplementedException();
+            StringBuilder output = new StringBuilder();
+
+            ImportClientDto[] clientDtos = JsonConvert.DeserializeObject<ImportClientDto[]>(jsonString);
+
+            ICollection<Client> validClients = new HashSet<Client>();
+
+            ICollection<int> existingTruckIds = context.Trucks
+                .Select(x => x.Id)
+                .ToList();
+
+            foreach (ImportClientDto clientDto in clientDtos)
+            {
+                if (!IsValid(clientDto))
+                {
+                    output.AppendLine(ErrorMessage);
+                    continue;
+                }
+
+                if (clientDto.Type == "usual")
+                {
+                    output.AppendLine(ErrorMessage);
+                    continue;
+                }
+
+                Client client = new Client()
+                {
+                    Name = clientDto.Name,
+                    Nationality = clientDto.Nationality,
+                    Type = clientDto.Type
+                };
+
+                foreach (int truckId in clientDto.TrucksIds.Distinct())
+                {
+                    if (!existingTruckIds.Contains(truckId))
+                    {
+                        output.AppendLine(ErrorMessage);
+                        continue;
+                    }
+
+                    ClientTruck clientTruck = new ClientTruck()
+                    {
+                        Client = client,
+                        TruckId = truckId
+                    };
+
+                    client.ClientsTrucks.Add(clientTruck);
+                }
+
+                validClients.Add(client);
+                output.AppendLine(string.Format(
+                    $"Successfully imported client – {client.Name} with {client.ClientsTrucks.Count} trucks."));
+            }
+
+
+            context.Clients.AddRange(validClients);
+            context.SaveChanges();
+
+            return output.ToString().TrimEnd();
         }
 
         private static bool IsValid(object dto)
