@@ -8,9 +8,9 @@ namespace Trucks.Data.Models.Enums
 {
     public enum CategoryType
     {
-        Flated,
-        Jumbo,
-        Refirgerated,
-        Semi
+        Flated = 0,
+        Jumbo  = 1,
+        Refirgerated = 2,
+        Semi =3
     }
 }
