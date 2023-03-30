@@ -11,13 +11,13 @@ namespace Trucks.Data.Models
     public class ClientTruck
     {
         [Required]
-        [ForeignKey(typeof(Client))]
+        [ForeignKey(nameof(Client))]
         public int ClientId { get; set; }
 
         public virtual Client Client { get; set; } = null!;
 
         [Required]
-        [ForeignKey(typeof(Truck))]
+        [ForeignKey(nameof(Truck))]
         public int TruckId { get; set; }
 
         public virtual Truck Truck { get; set; } = null!;

@@ -1,4 +1,6 @@
-﻿namespace Trucks.Data
+﻿using Trucks.Data.Models;
+
+namespace Trucks.Data
 {
     using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +15,10 @@
         { 
         }
 
+        public DbSet<Truck> Trucks { get; set; } = null!;
+        public DbSet<Client> Clients { get; set; } = null!;
+        public DbSet<Despatcher> Despatchers { get; set; } = null!;
+        public DbSet<ClientTruck> ClientsTrucks { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,6 +31,7 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder
         }
     }
 }

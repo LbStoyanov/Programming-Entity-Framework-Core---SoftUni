@@ -21,7 +21,7 @@ namespace Trucks.Data.Models
         [MaxLength(ValidationConstatnts.DespatcherNameLength)]
         public string Name { get; set; }
 
-        public string Position { get; set; }
+        public string? Position { get; set; }
 
         public ICollection<Truck> Trucks { get; set; }
     }
