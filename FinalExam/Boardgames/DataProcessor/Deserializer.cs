@@ -53,7 +53,7 @@ namespace Boardgames.DataProcessor
                         Name = bgDto.Name,
                         Rating = bgDto.Rating,
                         YearPublished = bgDto.YearPublished,
-                        CategoryType = (CategoryType)bgDto.CategoryType,
+                        CategoryType = bgDto.CategoryType is CategoryType ? (CategoryType)bgDto.CategoryType : null,
                         Mechanics = bgDto.Mechanics
                     };
 
@@ -71,7 +71,7 @@ namespace Boardgames.DataProcessor
                 validCreators.Add(creator);
 
                 sb.AppendLine(String.Format(SuccessfullyImportedCreator, creator.FirstName, creator.LastName,
-                    validBoardgames.Count));
+                    creator.Boardgames.Count));
             }
 
             context.Creators.AddRange(validCreators);

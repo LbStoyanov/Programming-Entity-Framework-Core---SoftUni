@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Xml.Serialization;
-using Boardgames.Data.Models.Enums;
 
 namespace Boardgames.DataProcessor.ImportDto
 {
@@ -31,11 +28,11 @@ namespace Boardgames.DataProcessor.ImportDto
         public int YearPublished { get; set; }
 
         [XmlElement("CategoryType")]
-        [MinLength(0)]
-        [MaxLength(4)]
+        [Range(0, 4)]
         public int CategoryType { get; set; }
 
         [XmlElement("Mechanics")]
+        [Required]
         public string Mechanics { get; set;}
     }
 }
