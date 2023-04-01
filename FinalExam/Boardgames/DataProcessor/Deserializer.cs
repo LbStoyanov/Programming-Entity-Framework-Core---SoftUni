@@ -70,7 +70,7 @@ namespace Boardgames.DataProcessor
 
                 validCreators.Add(creator);
 
-                sb.AppendLine(string.Format(SuccessfullyImportedCreator, creator.FirstName, creator.LastName,
+                sb.AppendLine(String.Format(SuccessfullyImportedCreator, creator.FirstName, creator.LastName,
                     validBoardgames.Count));
             }
 

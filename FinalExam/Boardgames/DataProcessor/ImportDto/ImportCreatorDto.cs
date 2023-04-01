@@ -10,14 +10,16 @@ namespace Boardgames.DataProcessor.ImportDto
     {
         [XmlElement("FirstName")]
         [Required]
-        [Range(2,7)]
+        [MinLength(2)]
+        [MaxLength(7)]
         public string FirstName { get; set; } = null!;
 
         [XmlElement("LastName")]
-        [Range(2, 7)]
+        [MinLength(2)]
+        [MaxLength(7)]
         public string LastName { get; set; } = null!;
 
         [XmlArray("Boardgames")]
-        public ImportBoardgameDto[] Boardgames { get; set; } = null!;
+        public ImportBoardgameDto[] Boardgames { get; set; }
     }
 }
