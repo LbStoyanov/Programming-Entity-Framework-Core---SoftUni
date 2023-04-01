@@ -31,7 +31,7 @@ namespace Boardgames.DataProcessor.ImportDto
         [Range(0, 4)]
         public int CategoryType { get; set; }
 
-        [XmlElement("Mechanics")]
+        [XmlArray("Mechanics")]
         [Required]
         public string Mechanics { get; set;}
     }
