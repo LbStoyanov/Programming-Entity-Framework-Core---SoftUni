@@ -14,7 +14,7 @@ namespace Boardgames.Data
             : base(options) 
         {
         }
-        public DbSet<BoardGame> BoardGames { get; set; } = null!;
+        public DbSet<Boardgame> Boardgames { get; set; } = null!;
         public DbSet<Seller> Sellers { get; set; } = null!;
         public DbSet<Creator> Creators { get; set; } = null!;
         public DbSet<BoardgameSeller> BoardgamesSellers { get; set; } = null!;

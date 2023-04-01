@@ -10,10 +10,11 @@ namespace Boardgames.Data.Models
 {
     public class BoardgameSeller
     {
-        [ForeignKey(nameof(BoardgameId))]
+        [ForeignKey(nameof(Boardgame))]
         public int BoardgameId { get; set; }
+        public virtual Boardgame Boardgame { get; set; } = null!;
 
-        public virtual BoardGame BoardGame { get; set; } = null!;
+
 
         [ForeignKey(nameof(Seller))]
         public int SellerId { get; set; }

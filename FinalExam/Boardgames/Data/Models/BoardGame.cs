@@ -4,9 +4,9 @@ using Boardgames.Data.Models.Enums;
 
 namespace Boardgames.Data.Models
 {
-    public class BoardGame
+    public class Boardgame
     {
-        public BoardGame()
+        public Boardgame()
         {
             this.BoardgamesSellers = new HashSet<BoardgameSeller>();
         }
